@@ -1,0 +1,16 @@
+#jdbc:
+#  driverClassName:com.mysql.jdbc.Driver
+#  url:jdbc:mysql://127.0.0.1:3306/amall
+#  username:root
+#  password:
+
+# 覆盖自动配置
+# 1.覆盖bean
+# 2.覆盖属性
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+server:
+  port:      
