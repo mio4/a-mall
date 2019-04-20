@@ -7,10 +7,36 @@
 # 覆盖自动配置
 # 1.覆盖bean
 # 2.覆盖属性
-spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+
+# 配置端口
 server:
-  port:      
+  port: 8899
+
+# 支持日志
+logging:
+  level:
+    com.mio4: debug
+
+# 配置数据库连接 ——连接的SQLServer对应的数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/amall
+    username: root
+    password: 123456
+
+# 配置MyBatis
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.mio4.pojo
+#  mapper-locations: mapper/*.xml
+
+
+
+

@@ -47,12 +47,12 @@ public class JdbcConfig {
 //        return dataSource;
 //    }
 
-
-    @Bean
-    @ConfigurationProperties(prefix = "jdbc")
-    public DataSource dataSource(){
-        DruidDataSource dataSource = new DruidDataSource();
-        return dataSource;
-    }
+//
+//    @Bean
+//    @ConfigurationProperties(prefix = "jdbc")
+//    public DataSource dataSource(){
+//        DruidDataSource dataSource = new DruidDataSource();
+//        return dataSource;
+//    }
 
 }

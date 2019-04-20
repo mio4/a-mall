@@ -2,11 +2,11 @@ package com.mio4;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.stereotype.Component;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-//@ComponentScans()
+//引入通用Mapper
+@MapperScan("com.mio4.mapper")
 public class BootDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(BootDemoApplication.class,args);
