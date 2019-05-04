@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+    <div id="app">
+        <!--Vue基础-->
+        <button @click="handleClick">click me</button>
+        <input type="text" v-model="age" /> <button @click="age++"> + </button>
+        <h1>
+            test vue! <span v-text="name"></span>
+            {{age}}
+        </h1>
+        <span v-text="name"></span>
+        <span v-html="name"></span>
+
+        <br>
+        <input type="checkbox" v-model="lessons" value="Java"/>Java <br>
+        <input type="checkbox" v-model="lessons" value="Python"/>Python <br>
+        <input type="checkbox" v-model="lessons" value="IOS"/>IOS <br>
+        <h2>
+            选中的checkbox: {{lessons.join(",")}}
+        </h2>
+
+
+        <!--v-on-->
+        <div style="width: 100px; height: 100px; background-color: cyan" @click.stop="print('div')">
+            v-on
+            <button @click.stop="print('button')">click me</button>
+            <a href="http://www.baidu.com" @click.prevent="print('百度')">百度一下</a>
+        </div>
+
+        <hr>
+        <!--v-for-->
+        <ul>
+            <li v-for="user in users">
+                {{user.name + "," + user.gender + "," + user.age}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(u,i) in users" :key="u.name">
+                {{i}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(u,i) in users[0]" >
+                {{u}} {{i}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="i in 5">
+                {{i}}
+            </li>
+        </ul>
+
+        <hr>
+        <!--v-if-->
+        <button @click="show = !show">点击切换</button><br/>
+        <h1 v-if="show">
+            你好
+        </h1>
+        <h1 v-show="show">
+            Hello
+        </h1>
+        <ul>
+            <li v-for="i in 5" v-if="i%2 == 0">
+                {{i}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="i in 5">
+                <span v-if="i%2==0">偶数 {{i}}</span>
+                <span v-else>奇数 {{i}}</span>
+            </li>
+        </ul>
+
+    </div>
+    <script src="node_modules/vue/dist/vue.js" ></script>
+    <script>
+        const app = new Vue({
+            el:"#app", //element
+            data:{
+                name:"<font color='#00ffff'>老哥</font>",
+                age:20,
+                lessons: [],
+                users:[
+                    {name:'柳岩', gender:'女', age: 21},
+                    {name:'虎哥', gender:'男', age: 30},
+                    {name:'范冰冰', gender:'女', age: 24},
+                    {name:'刘亦菲', gender:'女', age: 18},
+                    {name:'古力娜扎', gender:'女', age: 25}
+                ],
+                show: true,
+            },
+            methods:{
+                handleClick(){
+                    console.log(this);
+                    console.log("print here");
+                },
+                print(msg){
+                    console.log(msg);
+                }
+            },
+            created(){
+                //向后台发起ajax请求
+                // this.name = "hhh"
+                // setTimeout(() => this.name = "延时",1000)
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+    </div>
+<script src="node_modules/vue/dist/vue.js" ></script>
+<script>
+    //组件开发
+    // Vue.component("counter",{
+    //     template:"<button @click='buttonCnt++'>click me {{buttonCnt}}</button>",
+    //     data:function(){
+    //         return {
+    //             buttonCnt: 0
+    //         }
+    //     }
+    // });
+    const counter = {
+        template:"<button @click='buttonCnt++'>click me {{buttonCnt}}</button>",
+        data:function(){
+            return {
+                buttonCnt: 0
+            }
+        }
+    }
+    const app = new Vue({
+        el:"#app",
+        components:{
+            counter:counter
+        }
+    });
+</script>
+</body>
+</html>

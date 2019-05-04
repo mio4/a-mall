@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <style type="text/css">
+        div#box{
+            width: 100px;
+            height: 100px;
+            color: darkgray;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--v-bind-->
+    <!--<button @click="color='red'">红色</button>-->
+    <!--<button @click="color='blue'">蓝色</button>-->
+    <button @click="isRed = !isRed">click me</button>
+    <div id = "box" :class="{red:isRed,blue:!isRed}">
+        I am a box
+    </div>
+
+    <!--计算属性-->
+    <h1>
+        {{calculate}} <br>
+        {{calculate}} <br>
+        {{calculate}} <br>
+    </h1>
+
+    <!--watch-->
+    <input type="text" v-model="num">
+    <h1>
+        {{num}}
+    </h1>
+
+</div>
+<script src="node_modules/vue/dist/vue.js" ></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            color:"red",
+            isRed:true,
+            birthday: 1429032123201,
+            num:123456,
+            person:{
+                name:"mio",
+                age:20
+            }
+        },
+        computed:{
+            calculate(){
+                console.log(1);
+                const d = new Date(this.birthday);
+                return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+            }
+        },
+        watch:{
+            num(arg1,arg2){
+                console.log(arg1,arg2);
+            },
+            person:{
+                deep:true,
+                handler(val){
+                    console.log(val.age);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

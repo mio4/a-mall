@@ -7,3 +7,18 @@ eureka:
 spring:
   application:
     name: consumer-service
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 1000
+
+ribbon:
+  ConnectionTimeOut: 500
+  ReadTimeOut: 2000
+feign:
+  hystrix:
+    enabled: true
