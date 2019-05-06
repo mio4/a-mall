@@ -15,11 +15,13 @@ eureka:
 zuul:
   prefix: /api # 添加路由前缀
   retryable: true
-ribbon:
-  ConnectTimeout: 250 # 连接超时时间(ms)
-  ReadTimeout: 2000 # 通信超时时间(ms)
-  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
-  MaxAutoRetries: 1 # 同一实例的重试次数
+  routes:
+    item-service:
+      path: /item/**
+#      url: http://127.0.0.1:8081
+      serviceId: item-service
+#      strip-prefix: false
+
 hystrix:
   command:
     default:
@@ -27,3 +29,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数

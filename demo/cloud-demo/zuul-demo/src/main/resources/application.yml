@@ -1,24 +1,27 @@
 server:
   port: 10010
+
+spring:
+  application:
+    name: zuul-gateway
 zuul:
   routes:
      user-service:
       path: /user/**
-      serviceId: user-service
-      strip-prefix: false
+      url: http://127.0.0.1:8081
   ignored-services:
      consumer-service
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
-hystrix:
-  command:
-    default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMillisecond: 4000 # 熔断超时时长：6000ms
-ribbon:
-  ConnectionTimeOut: 500
-  ReadTimeOut: 4000
+#hystrix:
+#  command:
+#    default:
+#        execution:
+#          isolation:
+#            thread:
+#              timeoutInMillisecond: 4000 # 熔断超时时长：6000ms
+#ribbon:
+#  ConnectionTimeOut: 500
+#  ReadTimeOut: 4000

@@ -10,7 +10,7 @@ Redis
 ```
 
 ## 学习进度：
-Update Time : 2019/5/3
+Update Time : 2019/5/5
 
 1. SpringBoot自动配置原理——yaml文件配置
 2. SpringMVC——拦截器配置、Slf4j日志、通用Mapper配置、注解复习
@@ -31,18 +31,85 @@ Update Time : 2019/5/3
 
 ## 前端
 
-- [ ] 管理前台
+- [ ] manage.leyou.com
+- [x] IP访问——>二级域名访问
 
 ## 后台
 
 - [x] 搭建基础架构
 - [x] 实现工具类，通用异常处理类
+- [ ] 虚拟机代理请求——需要配置虚拟机网络（互相ping通，以及文件上传）——直接使用Nginx-Windows客户端
+- [ ] 
 
 
 
 
 
+---
 
+# 笔记
+
+```cmd
+# 运行vue项目
+npm run dev 
+# windows host文件
+C:\Windows\System32\drivers\etc\hosts
+# switchHosts
+# Nginx
+E:\nginx-1.14.2\conf\nginx.conf
+```
+
+###  Windows下Nginx配置
+
+```
+	./nginx.exe
+	./nginx.exe -s reload
+	./nginx.exe -s quit
+```
+
+### mysql导入sql脚本
+
+```cmd
+# mysql 安装路径
+C:\Program Files\MySQL\MySQL Server 5.5
+
+drop database amall;
+create database amall character set utf8;
+use amall;
+source ‪E:\GitHub\a-mall\info\amall.sql;
+```
+
+### 设计表结构
+
+```cmd
+
+```
+
+### 前后台交互API
+
+```cmd
+http://localhost:8081/category/list?pid=0 # 直接访问
+http://localhost:10010/api/category/list?pid=0 # 从网关转发
+
+```
+
+
+
+---
+
+# 项目中关注的一些细节
+
+1. 项目是前后端分离的，从manage.leyou.com向api.leyou.com发起跨域请求是如何处理的？
+
+    - [ ] JSONP （只能发送GET）
+    - [ ] Nginx反向代理（需要配置nginx.conf）
+    - [x] CORS（cross origin resource sharing）
+
+2. 如何发送Ajax请求
+
+    axios
+
+3. 
 
 
 

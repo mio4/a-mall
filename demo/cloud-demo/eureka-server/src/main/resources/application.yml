@@ -1,34 +1,33 @@
+spring:
+  application:
+    name: eureka-server-mio
+server:
+  port: 10086
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+
+# 参数启动: --spring.profiles.active=serverName
+#---
+## serve1
 #spring:
-#  application:
-#    name: eureka-server-mio
+#  profiles: eureka-server1
+#server:
+#  port: 10086
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:10087/eureka
+#---
+## server2
+#spring:
+#  profiles: eureka-server2
 #server:
 #  port: 10087
 #eureka:
 #  client:
 #    service-url:
 #      defaultZone: http://127.0.0.1:10086/eureka
-
-# 参数启动: --spring.profiles.active=serverName
----
-# serve1
-spring:
-  profiles: eureka-server1
-server:
-  port: 10086
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10087/eureka
----
-# server2
-spring:
-  profiles: eureka-server2
-server:
-  port: 10087
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
-#  server:
-#    eviction-interval-timer-in-ms: 30000
 

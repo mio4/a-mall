@@ -10,4 +10,4 @@ axios.interceptors.request.use(function (config) {
   return config;
 })
 
-Vue.prototype.$http = axios;
+Vue.prototype.$http = axios; //添加axios为常量$http
