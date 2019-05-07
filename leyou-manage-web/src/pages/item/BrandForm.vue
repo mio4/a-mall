@@ -80,13 +80,16 @@
           this.$http({
             method: this.isEdit ? 'put' : 'post',
             url: '/item/brand',
-            data: this.$qs.stringify(this.brand)
+              data: this.brand
           }).then(() => {
+              console.log(this.brand);
             // 关闭窗口
             this.$message.success("保存成功！");
             this.closeWindow();
           }).catch(() => {
-            this.$message.error("保存失败！");
+              console.log(this.$qs.stringify(this.brand));
+              console.log(this.brand);
+              this.$message.error("保存失败！");
           });
         }
       },
@@ -105,7 +108,14 @@
       closeWindow(){
         this.$emit("close");
       }
-    }
+    },
+      created(){
+        //测试
+        console.log("enter the page");
+        let person = {name:"mio",age:20};
+        console.log(this.$qs);
+        console.log(this.$qs.stringify(person));
+      }
   }
 </script>
 
