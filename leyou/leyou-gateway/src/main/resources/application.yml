@@ -21,6 +21,11 @@ zuul:
 #      url: http://127.0.0.1:8081
       serviceId: item-service
 #      strip-prefix: false
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false
+
 
 hystrix:
   command:

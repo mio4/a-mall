@@ -93,6 +93,33 @@ http://localhost:10010/api/category/list?pid=0 # 从网关转发
 
 ```
 
+### FastDFS
+
+```
+本机IP ：
+虚拟机IP：
+VMware NetWork Adapter VMNet1
+192.168.211.1
+VMware NetWork Adapter VMNet8
+192.168.92.1
+无线局域网适配器WLAN
+10.135.93.200
+Ubuntu虚拟机
+192.168.92.128
+Ubuntu共享文件夹
+计算机-> mnt/hgfs/Ubuntu Virtual Share
+E:\Ubuntu Virtual Share
+```
+
+### Linux
+
+```
+1. 更换国内镜像源
+2. 安装openssh
+3. 安装配置vim
+
+```
+
 
 
 ---
