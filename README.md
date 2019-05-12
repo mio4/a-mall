@@ -10,7 +10,7 @@ Redis
 ```
 
 ## 学习进度：
-Update Time : 2019/5/5
+Update Time : 2019/5/13
 
 1. SpringBoot自动配置原理——yaml文件配置
 2. SpringMVC——拦截器配置、Slf4j日志、通用Mapper配置、注解复习
@@ -25,8 +25,6 @@ Update Time : 2019/5/5
 10. Zuul——使用微服务网关：（1）控制所有微服务路由 （2）过滤器鉴权和限流（3）自定义过滤器
 11. Vue基础知识
 
----
-
 # 项目进度
 
 ## 前端
@@ -38,10 +36,14 @@ Update Time : 2019/5/5
 
 - [x] 搭建基础架构
 - [x] 实现工具类，通用异常处理类
-- [ ] 虚拟机代理请求——需要配置虚拟机网络（互相ping通，以及文件上传）——直接使用Nginx-Windows客户端
-- [ ] 
+- [x] 虚拟机CentOS的Nginx代理请求
+- [x] 实现FastDFS分布式文件上传功能（配置Ngnix+FastDFS-module）
+- [ ] 设计商品表结构
+- [ ] 购物车功能（复习Cookie和Session）
 
+### 其他
 
+尚硅谷MySQL高级——CentOS mysql环境配置
 
 
 
@@ -95,7 +97,7 @@ http://localhost:10010/api/category/list?pid=0 # 从网关转发
 
 ### FastDFS
 
-```
+```cmd
 本机IP ：
 虚拟机IP：
 VMware NetWork Adapter VMNet1
@@ -103,22 +105,43 @@ VMware NetWork Adapter VMNet1
 VMware NetWork Adapter VMNet8
 192.168.92.1
 无线局域网适配器WLAN
-10.135.93.200
+10.135.93.200 | 10.136.51.13
 Ubuntu虚拟机
 192.168.92.128
 Ubuntu共享文件夹
 计算机-> mnt/hgfs/Ubuntu Virtual Share
 E:\Ubuntu Virtual Share
-```
-
-### Linux
 
 ```
-1. 更换国内镜像源
-2. 安装openssh
-3. 安装配置vim
 
+
+
+```cmd
+# 相关配置
+# 防火墙
+service iptables status | service iptables off
+chkconfig iptables off
+# Centos IP
+192.168.92.129
+# 本机IP——动态更新
+10.136.51.13
+# FastDFS
+/etc/fdfs ——配置文件
+/etc/init.d/fdfs_trackerd ——启动文件
+service fdfs_trackerd start ——启动服务
+# IP变更之后需要的fix
+本机IP和CentOS虚拟机IP可能是动态IP，需要更改的配置：
+1. 本机IP改变
+	(1)CentOS /opt/nginx/conf/nginx.conf中proxy_pass 修改为新的本机IP
+2. CentOS IP改变
+	(1)FastDFS中tracker storage配置文件：
+		/etc/fdfs/storage.conf —— tracker_server修改为新的虚拟机IP
+		/etc/fdfs/tracker.conf —— 不需要修改（可以配置新的端口）
+		/etc/fdfs/client.conf  —— tracker_server修改为新的虚拟机IP
+	(2)SwitchHost.exe中修改hosts映射文件	
 ```
+
+
 
 
 
