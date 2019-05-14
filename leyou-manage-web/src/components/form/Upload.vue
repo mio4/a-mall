@@ -11,30 +11,18 @@
     >
       <i class="el-icon-plus"></i>
     </el-upload>
-    <!--<el-upload ref="singleUpload" v-else-->
-               <!--:style="avatarStyle"-->
-               <!--class="logo-uploader"-->
-               <!--:action="baseUrl + UploadUrl"-->
-               <!--:show-file-list="false"-->
-               <!--:on-success="handleSuccess"-->
-               <!--:data = "fileData">-->
-      <!--<div @mouseover="showBtn=true" @mouseout="showBtn=false">-->
-        <!--<i @click.stop="removeSingle" v-show="dialogImageUrl && showBtn" class="el-icon-close remove-btn"></i>-->
-        <!--<img v-if="dialogImageUrl" :src="dialogImageUrl" :style="avatarStyle">-->
-        <!--<i v-else class="el-icon-plus logo-uploader-icon" :style="avatarStyle"></i>-->
-      <!--</div>-->
-    <!--</el-upload>-->
-
-      <!--fix——图片上传-->
-      <el-upload ref="singleUpload"
-          class="image-uploader"
-          drag
-          :action="baseUrl + UploadUrl"
-          :data="pppss">
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-      </el-upload>
-
+    <el-upload ref="singleUpload" v-else
+               :style="avatarStyle"
+               class="logo-uploader"
+               :action="baseUrl + url"
+               :show-file-list="false"
+               :on-success="handleSuccess">
+      <div @mouseover="showBtn=true" @mouseout="showBtn=false">
+        <i @click.stop="removeSingle" v-show="dialogImageUrl && showBtn" class="el-icon-close remove-btn"></i>
+        <img v-if="dialogImageUrl" :src="dialogImageUrl" :style="avatarStyle">
+        <i v-else class="el-icon-plus logo-uploader-icon" :style="avatarStyle"></i>
+      </div>
+    </el-upload>
     <v-dialog v-model="show" max-width="500">
       <img width="500px" :src="dialogImageUrl" alt="">
     </v-dialog>
@@ -74,7 +62,6 @@
         show: false,
         dialogImageUrl: "",
         baseUrl: config.api,
-        UploadUrl: "/upload/image",
         avatarStyle: {
           width: this.picWidth + 'px',
           height: this.picHeight + 'px',
@@ -122,9 +109,7 @@
       value:{
         deep:true,
         handler(val,oldVal){
-          if (oldVal) {
-            return;
-          }
+    
           if (this.multiple) {
             this.fileList = val.map(f => {
               return {response: f,url:f}

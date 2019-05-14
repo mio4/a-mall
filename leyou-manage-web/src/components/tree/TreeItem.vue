@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-list-tile
-      @click="toggle" class="level1 pt-0 pb-0 mt-0 mb-0" :class="{'selected':isSelected}">
-      <v-list-tile-avatar>
+      @click="toggle" class="level1 py-0 my-0" :class="{'selected':isSelected}">
+      <v-list-tile-avatar class="px-1">
         <v-icon v-if="model.isParent">{{open ? 'folder_open' : 'folder'}}</v-icon>
         <v-icon v-if="!model.isParent">insert_drive_file</v-icon>
       </v-list-tile-avatar>
@@ -205,5 +205,9 @@
 
   .selected {
     background-color: rgba(105,184,249,0.75);
+  }
+
+  .material-icons{
+    line-height:1.7
   }
 </style>

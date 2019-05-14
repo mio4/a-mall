@@ -125,6 +125,7 @@ chkconfig iptables off
 192.168.92.129
 # 本机IP——动态更新
 10.136.51.13
+10.135.51.174
 # FastDFS
 /etc/fdfs ——配置文件
 /etc/init.d/fdfs_trackerd ——启动文件
@@ -133,6 +134,8 @@ service fdfs_trackerd start ——启动服务
 本机IP和CentOS虚拟机IP可能是动态IP，需要更改的配置：
 1. 本机IP改变
 	(1)CentOS /opt/nginx/conf/nginx.conf中proxy_pass 修改为新的本机IP
+	# vim替换批处理脚本
+	
 2. CentOS IP改变
 	(1)FastDFS中tracker storage配置文件：
 		/etc/fdfs/storage.conf —— tracker_server修改为新的虚拟机IP
@@ -141,7 +144,7 @@ service fdfs_trackerd start ——启动服务
 	(2)SwitchHost.exe中修改hosts映射文件	
 ```
 
-
+![1557711001551](C:\Users\mio\AppData\Roaming\Typora\typora-user-images\1557711001551.png)
 
 
 
@@ -159,7 +162,11 @@ service fdfs_trackerd start ——启动服务
 
     axios
 
-3. 
+3. 研发顺序
+
+    数据库打表——>通过表构造JavaBean——>通用Mapper——>Service——>Controller——>前后端对接测试
+
+4. 
 
 
 

@@ -158,6 +158,10 @@
       value: {
         deep: true,
         handler(val) {
+          if(!val){
+            this.selected = [];
+            return;
+          }
           if(val && this.showAllLevels && !this.multiple){
             this.selected = [val.map(o => o[this.itemText]).join("/")]
           } else if (this.multiple && val) {
@@ -167,7 +171,7 @@
                 value: o[this.itemValue]
               }
             })
-          } else {
+          } else{
             this.selected = [val[this.itemText]]
           }
         }
