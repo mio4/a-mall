@@ -40,7 +40,7 @@ typora-copy-images-to: assets
 (5) 本机接受到http请求，（网关）处理http请求，返回结果
 
 2. 线上环境
-
+TODO
 ![online_process]()
 
 
@@ -106,8 +106,7 @@ typora-copy-images-to: assets
 
 
 # 0x3 技术细节
-### JDK 8
-
+### JDK 8 TODO
 参考JDK8的思维导图如下：
 
 主要研究函数式编程和其他思想
@@ -131,7 +130,9 @@ axios 一些小的Demo如下：
 
 
 
+---
 
+# 个人备忘录
 
 
 
