@@ -137,26 +137,9 @@ service fdfs_trackerd start ——启动服务
 
 ## manage.leyou.com
 
-| 功能                       | 请求方法 | 请求路径  | 请求体                                 | 说明                                                         | 响应提                                                       | 说明                                                         |
+| 功能                       | 请求方法 | 请求路径  | 请求体                                 | 说明                                                         | 响应体                                                       | 说明                                                         |
 | -------------------------- | -------- | --------- | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 获取商品列表：需要后端分页 | GET      | /spu/page | key<br/>saleable<br/>page<br/>row<br/> | key：商品名称(模糊)，<br/>saleable：是否上架，
-page：当前页数，
-row：一页显示多少条 | {<br/>
-	"total": 0,<br/>
-	"totalPage": null,<br/>
-	"items": [{<br/>
-		"id": 129,<br/>
-		"brandId": 18374,<br/>
-		"cid1": 74,<br/>
-		"cid2": 75,<br/>
-		"cid3": 76,<br/>
-		"title": "小米（MI） 红米5 plus 手机 （更新）",<br/>
-		"subTitle": "18:9全面屏，4000mAh大电池，骁龙八核处理器",<br/>
-		"saleable": true,<br/>
-		"valid": true,<br/>
-		"createTime": "2018-04-21T07:59:38.000+0000",<br/>
-		"cname": "手机/手机通讯/手机",<br/>
-		"bname": "小米（MI）"}]
+| 获取商品列表：需要后端分页 | GET      | /spu/page | key<br/>saleable<br/>page<br/>row<br/> | key：商品名称(模糊)，<br/>saleable：是否上架，<br/>page：当前页数，<br/>row：一页显示多少条 | {"total": 0,<br/>"totalPage": null,<br/>"items": [{<br/>"id": 129,<br/>"brandId": 18374,<br/>"cid1": 74,<br/>"cid2": 75,<br/>"cid3": 76,<br/>"title": "小米（MI） 红米5 plus 手机 （更新）",<br/>"subTitle": "18:9全面屏，4000mAh大电池，骁龙八核处理器",<br/>"saleable": true,<br/>"valid": true,<br/>"createTime": "2018-04-21T07:59:38.000+0000",<br/>"cname": "手机/手机通讯/手机",<br/>"bname": "小米（MI）"}]
 } | total：商品总条数<br/>totalPage：总共多少页
 items：商品列表，每个item包含商品的详细信息 |
 |                            |          |           |                                        |                                                              |                                                              |                                                              |
