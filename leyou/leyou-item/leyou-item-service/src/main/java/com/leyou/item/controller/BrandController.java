@@ -50,14 +50,6 @@ public class BrandController {
      * TODO 修改axios postdata编码的问题
      * 1. 使用Map获取很容易出现问题
      * 2. 尽量直接使用RequestParam获取参数
-     * @param brand
-     * @param categories
-     * @return
-     * Brand brand,
-     *             @RequestParam("name") String name,
-     *             @RequestParam("image") String image,
-     *             @RequestParam("letter") String Letter,
-     *             @RequestParam("categories") List<Long> categories
      */
     @PostMapping
     public ResponseEntity<Void> saveBrand(
@@ -72,9 +64,29 @@ public class BrandController {
 
         Object raw_categories = map.get("categories");
         List<Integer> categories = (List<Integer>)raw_categories;
-//        List<Long> categories = (List<Long>) map.get("categories");
-
         brandService.saveBrand(brand,categories);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+
+    /**
+     * 通过id查询品牌
+     * @param cid
+     * @return
+     */
+    @GetMapping("/cid/{cid}")
+    public ResponseEntity<List<Brand>> queryBrandByCid(@PathVariable("cid") Long cid) throws LyException {
+        return ResponseEntity.ok(brandService.queryBrandByCid(cid));
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

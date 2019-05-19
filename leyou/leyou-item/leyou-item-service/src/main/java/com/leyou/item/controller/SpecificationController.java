@@ -33,14 +33,18 @@ public class SpecificationController {
     }
 
     /**
-     * 根据分组id查询规格对应参数列表
-     * @param gid
+     * 查询参数列表
+     * @param gid group id
+     * @param cid category id
+     * @param searching 搜索字段
      * @return
      * @throws LyException
      */
     @GetMapping("params")
-    public ResponseEntity<List<SpecParam>> queryParamByGid(@RequestParam("gid") Long gid) throws LyException {
-        return ResponseEntity.ok(specificationService.queryParamByGid(gid));
+    public ResponseEntity<List<SpecParam>> queryParamList(@RequestParam(value = "gid",required = false) Long gid,
+                                                          @RequestParam(value = "cid",required = false) Long cid,
+                                                          @RequestParam(value = "searching",required = false) Boolean searching) throws LyException {
+        return ResponseEntity.ok(specificationService.queryParamList(gid,cid,searching));
     }
 
     /**

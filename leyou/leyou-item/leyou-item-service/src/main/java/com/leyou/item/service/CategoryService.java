@@ -26,4 +26,19 @@ public class CategoryService {
         }
         return result;
     }
+
+    /**
+     * 查询多个id对应的category列表
+     * @param ids
+     * @return 查询结果
+     */
+    public List<Category> queryByIds(List<Long> ids) throws LyException {
+        List<Category> result = categoryMapper.selectByIdList(ids);
+        if(CollectionUtils.isEmpty(result)){ //404 not found
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        return result;
+    }
+
+
 }

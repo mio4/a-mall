@@ -47,6 +47,14 @@ public class BrandService {
         return new PageResult<>(info.getTotal(),list);
     }
 
+
+    /**
+     * 保存品牌
+     * `@Transactional` 执行事务
+     * @param brand
+     * @param categories
+     * @throws LyException
+     */
     @Transactional
     public void saveBrand(Brand brand, List<Integer> categories) throws LyException {
         //新增品牌
@@ -62,5 +70,27 @@ public class BrandService {
                 throw new LyException(ExceptionEnum.BRAND_SAVE_ERROR);
             }
         }
+    }
+
+    /**
+     * 通过主键ID查询品牌
+     * @param id
+     * @return
+     * @throws LyException
+     */
+    public Brand queryById(Long id) throws LyException {
+        Brand brand = brandMapper.selectByPrimaryKey(id);
+        if(brand == null){
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brand;
+    }
+
+    public List<Brand> queryBrandByCid(Long cid) throws LyException {
+        List<Brand> brands = brandMapper.selectBrandIdAndNameByCid(cid);
+        if(brands == null){
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brands;
     }
 }

@@ -30,10 +30,13 @@ public class SpecificationService {
         return res;
     }
 
-    public List<SpecParam> queryParamByGid(Long gid) throws LyException {
+    public List<SpecParam> queryParamList(Long gid,Long cid,Boolean searching) throws LyException {
         SpecParam specParam = new SpecParam();
         specParam.setGroupId(gid);
+        specParam.setCid(cid);
+        specParam.setSearching(searching);
         List<SpecParam> res = paramMapper.select(specParam);
+
         if(CollectionUtils.isEmpty(res)){
             throw new LyException(ExceptionEnum.SPEC_PARAM_NOT_FOUND);
         }
