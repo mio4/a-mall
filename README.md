@@ -10,8 +10,6 @@ typora-copy-images-to: assets
 
 ### 2.项目总览
 #### 2.1 项目架构
-> Godaddy购买域名，阿里云购买服务器，DNS域名解析，环境配置 
-
 域名：www.mio4.com
 
 服务器：阿里云1核2GB CentOS 6.9 
