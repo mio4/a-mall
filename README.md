@@ -25,7 +25,7 @@ Update Time : 2019/5/18
 
 ## 前端
 
-- [ ] manage.leyou.com
+- [x] manage.leyou.com
 - [x] IP访问——>二级域名访问
 
 ## 后台
@@ -34,7 +34,7 @@ Update Time : 2019/5/18
 - [x] 实现工具类，通用异常处理类
 - [x] 虚拟机CentOS的Nginx代理请求
 - [x] 实现FastDFS分布式文件上传功能（配置Ngnix+FastDFS-module）
-- [ ] 设计商品表结构
+- [x] 设计商品表结构
 - [ ] 购物车功能（复习Cookie和Session）
 
 # 笔记
@@ -133,7 +133,7 @@ service fdfs_trackerd start ——启动服务
 
 ![1557711001551](C:\Users\mio\AppData\Roaming\Typora\typora-user-images\1557711001551.png)
 
-# API
+# 0x API
 
 ## manage.leyou.com
 
@@ -141,16 +141,6 @@ service fdfs_trackerd start ——启动服务
 | --- | ------- | -------- | ----- | ---- | ----- | ----- |
 | 获取商品列表：需要后端分页 | GET  | /spu/page | key<br/>saleable<br/>page<br/>row<br/> | key：商品名称(模糊)，<br/>saleable：是否上架，<br/>page：当前页数，<br/>row：一页显示多少条 | {"total": 0,<br/>"totalPage": null,<br/>"items": [{<br/>"id": 129,<br/>"brandId": 18374,<br/>"cid1": 74,<br/>"cid2": 75,<br/>"cid3": 76,<br/>"title": "小米（MI） 红米5 plus 手机 （更新）",<br/>"subTitle": "18:9全面屏，4000mAh大电池，骁龙八核处理器",<br/>"saleable": true,<br/>"valid": true,<br/>"createTime": "2018-04-21T07:59:38.000+0000",<br/>"cname": "手机/手机通讯/手机",<br/>"bname": "小米（MI）"}]<br/>}| total：商品总条数<br/>totalPage：总共多少页<br/>items：商品列表，每个item包含商品的详细信息 |
 | 新增商品：需要填写商品详细信息 | POST     | /item/goods |  TODO   | { <br/>  "brandId": 8557,<br/>"title": "华为超级P",<br/>"subTitle": "不知道写啥", <br/> "spuDetail":[...],<br/>"skus": [{...}]<br/>"cid1":74,<br/>"cid2":75,<br/>"cid3":76<br/>} |         |             |
-
-
-
-
-
-# 技术总结
-
-## Java8
-
-## Spring注解
 
 # 项目中关注的一些细节
 
@@ -171,6 +161,16 @@ service fdfs_trackerd start ——启动服务
 4. 
 
 
+
+# 0x Detail
+
+## JDK 8
+
+## ElasticSearch
+
+## 跨域问题
+
+## AJAX
 
 
 
