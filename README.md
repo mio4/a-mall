@@ -1,5 +1,5 @@
 ---
-typora-root-url: assets
+
 typora-copy-images-to: assets
 ---
 
@@ -27,7 +27,7 @@ typora-copy-images-to: assets
 整体架构：
 1. 本地模拟
 
-![local_process](/local_process.png)
+![local_process](assets\local_process.png)
 
 (1) 本机通过浏览器发送一个HTTP请求，比如manage.leyou.com
 (2) Windows hosts文件中manage.leyou.com解析到IP 10.136.51.13 
