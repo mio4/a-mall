@@ -1,8 +1,3 @@
----
-
-typora-copy-images-to: assets
----
-
 # 0x0 引言
 ## 1.学习目的
 1. 直接目的：搭建一个B2C购物网站
