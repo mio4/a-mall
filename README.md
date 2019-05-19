@@ -10,7 +10,9 @@ typora-copy-images-to: assets
 
 ### 2.项目总览
 #### 2.1 项目架构
-域名：www.mio4.com
+前台域名：www.mio4.com
+
+后台管理域名： manage.leyou.com
 
 服务器：阿里云1核2GB CentOS 6.9 
 
@@ -24,6 +26,14 @@ typora-copy-images-to: assets
 
 整体架构：
 1. 本地模拟
+
+![local_process](/local_process.png)
+
+(1) 本机通过浏览器发送一个HTTP请求，比如manage.leyou.com
+(2) Windows hosts文件中manage.leyou.com解析到IP 10.136.51.13 
+(3) 浏览器访问10.136.51.13:80，发送的HTTP Request Header中带着Host：manage.leyou.com键值对
+(4) 虚拟机Nginx接受到请求，Host匹配nginx.conf中的server_name，请求以本机IP:9001的形式转发到本机
+(5) 本机接受到http请求，（网关）处理http请求，返回结果
 
 
 
@@ -53,7 +63,7 @@ typora-copy-images-to: assets
 **后端**：
 1. SpringMVC + Spring 5.0 + MyBatis3
 2. SpringBoot 2.0.4.RELEASE
-3. SpringCloud
+3. SpringCloud：Eureka、Hystrix、Feign、Zuul
 4. ElasticSearch 5.6.8
 5. Kibana
 4. Redis 4.0
