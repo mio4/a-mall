@@ -1,8 +1,32 @@
+---
+typora-root-url: assets
+typora-copy-images-to: assets
+---
+
+## 0x0 引言
+### 1.学习目的
+1. 直接目的：搭建一个B2C购物网站
+2. 间接起因：复习JavaWeb开发Spring框架，了解学习前沿技术：SpringBoot、SpringCloud、消息队列等中间件
+
+### 2.项目总览
+#### 2.1 项目架构
+
+域名：www.mio4.com
+服务器：阿里云服务器
+整体架构：
+
+#### 2.2 实现功能
+1. 商品后台管理系统
+
+#### 2.3 技术栈
+**前端**：
+**后端**：
+
+#### 2.4 
+
 目的：通过从零开始搭建一个B2C电商项目学习前沿技术的基础知识
 
-## 学习进度
-
-Update Time : 2019/5/18
+## 学习进度  2019/5/19
 
 1. SpringBoot自动配置原理——yaml文件配置
 2. SpringMVC——拦截器配置、Slf4j日志、通用Mapper配置、注解复习
