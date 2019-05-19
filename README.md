@@ -23,21 +23,49 @@ typora-copy-images-to: assets
 - [ ] JDK 8
 
 整体架构：
+1. 本地模拟
+
+
+
+2. 线上环境
+
 
 
 
 #### 2.2 实现功能
 1. 商品后台管理系统
+	商品管理：商品分类、品牌、商品规格信息管理（增删改查）
+	用户管理：
+2. 前台商品购物门户
+	商品搜索
+	购物车
+	下单
+	售后评价
 
 #### 2.3 技术栈
 **前端**：
+1. HTML、CSS、ES6
+2. Vue.js和Vuetify UI框架
+3. 前端构建：WebPack
+4. Vue脚手架：Vue-Cli
+5. 开源富文本编辑器：quill-editor
+
 **后端**：
+1. SpringMVC + Spring 5.0 + MyBatis3
+2. SpringBoot 2.0.4.RELEASE
+3. SpringCloud
+4. ElasticSearch 5.6.8
+5. Kibana
+4. Redis 4.0
+5. RabbitMQ 3.4
+6. Nginx 1.10.2
+7. FastDFS 5.0.8
+8. JWT
 
 #### 2.4 
 
-目的：通过从零开始搭建一个B2C电商项目学习前沿技术的基础知识
 
-## 学习进度  2019/5/19
+### 学习进度  2019/5/19
 
 1. SpringBoot自动配置原理——yaml文件配置
 2. SpringMVC——拦截器配置、Slf4j日志、通用Mapper配置、注解复习
