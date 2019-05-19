@@ -4,12 +4,12 @@ typora-copy-images-to: assets
 ---
 
 # 0x0 引言
-### 1.学习目的
+## 1.学习目的
 1. 直接目的：搭建一个B2C购物网站
 2. 间接起因：复习JavaWeb开发Spring框架，了解学习前沿技术：SpringBoot、SpringCloud、消息队列等中间件
 
-### 2.项目总览
-#### 2.1 项目架构
+## 2.项目总览
+### 2.1 项目架构
 前台域名：www.mio4.com
 
 后台管理域名： manage.leyou.com
@@ -44,7 +44,7 @@ TODO
 ![online_process]()
 
 
-#### 2.2 实现功能
+### 2.2 实现功能
 1. 商品后台管理系统
 	商品管理：商品分类、品牌、商品规格信息管理（增删改查）
 	用户管理：
@@ -54,7 +54,7 @@ TODO
 	下单
 	售后评价
 
-#### 2.3 技术栈
+### 2.3 技术栈
 **前端**：
 1. HTML、CSS、ES6
 2. Vue.js和Vuetify UI框架
@@ -74,7 +74,7 @@ TODO
 7. FastDFS 5.0.8
 8. JWT
 
-#### 2.4 特点
+### 2.4 特点
 
 1. 通过Node.js和Vue.js实现了前后端分离开发
 2. 使用SpringCloud实践了微服务的思想
@@ -82,7 +82,7 @@ TODO
 4. 使用微信SDK实现了下单之后微信扫码支付
 5. 基于ElasticSearch的高级聚合，实现商品的智能搜索过滤
 
-#### 2.5 难点
+### 2.5 难点
 
 第一个就是分布式搜索引擎（Solr  Lucene）
 1. ElasticSearch
@@ -106,7 +106,7 @@ TODO
 
 
 # 0x3 技术细节
-### JDK 8 TODO
+## JDK 8 TODO
 参考JDK8的思维导图如下：
 
 主要研究函数式编程和其他思想
@@ -114,7 +114,7 @@ TODO
 ![JDK8.png]()
 
 
-### AJAX
+## AJAX
 axios 一些小的Demo如下：
 
 
