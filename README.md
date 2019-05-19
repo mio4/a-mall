@@ -14,11 +14,12 @@ typora-copy-images-to: assets
 
 服务器：阿里云1核2GB CentOS 6.9 
 
-- [ ] DNS域名绑定
+- [x] DNS域名绑定
 - [ ] 域名备案
-- [ ] 配置FastDFS——开机启动
-- [ ] 配置Nginx——开机启动
-- [ ] MySQL——开机启动
+- [ ] 开启80、8080 | 8001、9002、10086、10010端口
+- [x] 配置FastDFS，tracker端口22122，storage端口23000
+- [x] 配置Nginx
+- [ ] MySQL
 - [ ] JDK 8
 
 整体架构：
