@@ -3,7 +3,7 @@
 typora-copy-images-to: assets
 ---
 
-## 0x0 引言
+# 0x0 引言
 ### 1.学习目的
 1. 直接目的：搭建一个B2C购物网站
 2. 间接起因：复习JavaWeb开发Spring框架，了解学习前沿技术：SpringBoot、SpringCloud、消息队列等中间件
@@ -41,7 +41,7 @@ typora-copy-images-to: assets
 
 2. 线上环境
 
-
+![online_process]()
 
 
 #### 2.2 实现功能
@@ -86,6 +86,55 @@ typora-copy-images-to: assets
 
 第一个就是分布式搜索引擎（Solr  Lucene）
 1. ElasticSearch
+
+# 0x1 后台管理系统
+
+
+## API
+
+| 功能 | 请求方法 | 请求路径  | 请求体 | 说明  | 响应体  | 说明|
+| --- | ------- | -------- | ----- | ---- | ----- | ----- |
+| 获取商品列表：需要后端分页 | GET  | /spu/page | key<br/>saleable<br/>page<br/>row<br/> | key：商品名称(模糊)，<br/>saleable：是否上架，<br/>page：当前页数，<br/>row：一页显示多少条 | {"total": 0,<br/>"totalPage": null,<br/>"items": [{<br/>"id": 129,<br/>"brandId": 18374,<br/>"cid1": 74,<br/>"cid2": 75,<br/>"cid3": 76,<br/>"title": "小米（MI） 红米5 plus 手机 （更新）",<br/>"subTitle": "18:9全面屏，4000mAh大电池，骁龙八核处理器",<br/>"saleable": true,<br/>"valid": true,<br/>"createTime": "2018-04-21T07:59:38.000+0000",<br/>"cname": "手机/手机通讯/手机",<br/>"bname": "小米（MI）"}]<br/>}| total：商品总条数<br/>totalPage：总共多少页<br/>items：商品列表，每个item包含商品的详细信息 |
+| 新增商品：需要填写商品详细信息 | POST     | /item/goods |  TODO   | { <br/>  "brandId": 8557,<br/>"title": "华为超级P",<br/>"subTitle": "不知道写啥", <br/> "spuDetail":[...],<br/>"skus": [{...}]<br/>"cid1":74,<br/>"cid2":75,<br/>"cid3":76<br/>} |         |             |
+
+
+
+# 0x2 前台门户网站
+
+
+
+
+
+# 0x3 技术细节
+### JDK 8
+
+参考JDK8的思维导图如下：
+
+主要研究函数式编程和其他思想
+
+![JDK8.png]()
+
+
+### AJAX
+axios 一些小的Demo如下：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### 学习进度  2019/5/19
@@ -219,14 +268,6 @@ service fdfs_trackerd start ——启动服务
 
 ![1557711001551](C:\Users\mio\AppData\Roaming\Typora\typora-user-images\1557711001551.png)
 
-# 0x API
-
-## manage.leyou.com
-
-| 功能 | 请求方法 | 请求路径  | 请求体 | 说明  | 响应体  | 说明|
-| --- | ------- | -------- | ----- | ---- | ----- | ----- |
-| 获取商品列表：需要后端分页 | GET  | /spu/page | key<br/>saleable<br/>page<br/>row<br/> | key：商品名称(模糊)，<br/>saleable：是否上架，<br/>page：当前页数，<br/>row：一页显示多少条 | {"total": 0,<br/>"totalPage": null,<br/>"items": [{<br/>"id": 129,<br/>"brandId": 18374,<br/>"cid1": 74,<br/>"cid2": 75,<br/>"cid3": 76,<br/>"title": "小米（MI） 红米5 plus 手机 （更新）",<br/>"subTitle": "18:9全面屏，4000mAh大电池，骁龙八核处理器",<br/>"saleable": true,<br/>"valid": true,<br/>"createTime": "2018-04-21T07:59:38.000+0000",<br/>"cname": "手机/手机通讯/手机",<br/>"bname": "小米（MI）"}]<br/>}| total：商品总条数<br/>totalPage：总共多少页<br/>items：商品列表，每个item包含商品的详细信息 |
-| 新增商品：需要填写商品详细信息 | POST     | /item/goods |  TODO   | { <br/>  "brandId": 8557,<br/>"title": "华为超级P",<br/>"subTitle": "不知道写啥", <br/> "spuDetail":[...],<br/>"skus": [{...}]<br/>"cid1":74,<br/>"cid2":75,<br/>"cid3":76<br/>} |         |             |
 
 # 项目中关注的一些细节
 
