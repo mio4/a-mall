@@ -39,8 +39,6 @@ typora-copy-images-to: assets
 
 (5) 本机接受到http请求，（网关）处理http请求，返回结果
 
-
-
 2. 线上环境
 
 
@@ -76,7 +74,18 @@ typora-copy-images-to: assets
 7. FastDFS 5.0.8
 8. JWT
 
-#### 2.4 
+#### 2.4 特点
+
+1. 通过Node.js和Vue.js实现了前后端分离开发
+2. 使用SpringCloud实践了微服务的思想
+3. 使用FastDFS解决了大数据量下的分布式文件存储问题
+4. 使用微信SDK实现了下单之后微信扫码支付
+5. 基于ElasticSearch的高级聚合，实现商品的智能搜索过滤
+
+#### 2.5 难点
+
+第一个就是分布式搜索引擎（Solr  Lucene）
+1. ElasticSearch
 
 
 ### 学习进度  2019/5/19
