@@ -20,7 +20,7 @@
 - [ ] JDK 8
 
 整体架构：
-1. 本地模拟
+1. 虚拟机模拟
 
 ![local_process](assets/local_process.png)
 
@@ -35,7 +35,9 @@
 (5) 本机接受到http请求，（网关）处理http请求，返回结果
 
 2. 线上环境
-TODO
+
+  TODO
+
 ![online_process]()
 
 
@@ -79,13 +81,12 @@ TODO
 
 ### 2.5 难点
 
-第一个就是分布式搜索引擎（Solr  Lucene）
-1. ElasticSearch
+1. ElasticSearch实现商品搜索功能
 
 # 0x1 后台管理系统
 
 
-## API
+## 1.1 前后端API交互文档
 
 | 功能 | 请求方法 | 请求路径  | 请求体 | 说明  | 响应体  | 说明|
 | --- | ------- | -------- | ----- | ---- | ----- | ----- |
@@ -96,11 +97,24 @@ TODO
 
 # 0x2 前台门户网站
 
+## 2.1ElasticSearch
 
 
 
 
-# 0x3 技术细节
+
+# 0x3 细节分析
+
+## 3.1
+
+
+
+
+
+
+
+
+
 ## JDK 8 TODO
 参考JDK8的思维导图如下：
 
@@ -111,7 +125,6 @@ TODO
 
 ## AJAX
 axios 一些小的Demo如下：
-
 
 
 
@@ -244,6 +257,7 @@ chkconfig iptables off
 10.136.51.13
 10.135.51.174
 10.135.51.174
+10.135.239.33
 # FastDFS
 /etc/fdfs ——配置文件
 /etc/init.d/fdfs_trackerd ——启动文件

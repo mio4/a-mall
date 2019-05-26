@@ -79,9 +79,16 @@ public class BrandController {
         return ResponseEntity.ok(brandService.queryBrandByCid(cid));
     }
 
-
-
-
+    /**
+     * 根据id查询品牌
+     * @param id
+     * @return
+     * @throws LyException
+     */
+    @GetMapping("{cid}")
+    public ResponseEntity<Brand> queryBrandById(@PathVariable("cid") Long id) throws LyException {
+        return ResponseEntity.ok(brandService.queryById(id));
+    }
 
 
 

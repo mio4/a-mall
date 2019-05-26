@@ -28,4 +28,15 @@ public class CategoryController {
     public ResponseEntity<List<Category>> queryCategoryListByPid(@RequestParam("pid") Long pid) throws LyException {
         return ResponseEntity.ok().body(categoryService.queryCategoryListByPid(pid));
     }
+
+    /**
+     * 根据商品分类id查询名称
+     * @param ids
+     * @return
+     * @throws LyException
+     */
+    @GetMapping("list/ids")
+    public ResponseEntity<List<Category>> queryCategoryByIds(@RequestParam("ids") List<Long> ids) throws LyException {
+        return ResponseEntity.ok(categoryService.queryByIds(ids));
+    }
 }
