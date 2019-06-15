@@ -11,6 +11,7 @@ import com.leyou.search.client.GoodsClient;
 import com.leyou.search.client.SpecificationClient;
 import com.leyou.search.pojo.Goods;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -32,6 +33,12 @@ public class SearchService {
     @Autowired
     private SpecificationClient specificationClient;
 
+    /**
+     *
+     * @param spu
+     * @return
+     * @throws LyException
+     */
     public Goods buildGoods(Spu spu) throws LyException {
         //all-分类
         List<Category> categories = categoryClient.queryCategoryByIds(Arrays.asList(spu.getCid1(),spu.getCid2(),spu.getCid3()));
@@ -77,14 +84,29 @@ public class SearchService {
         List<SpecParam> params = specificationClient.queryParamList(null,spu.getCid3(),true);
         SpuDetail spuDetail = goodsClient.queryDetailById(spu.getId());
         //通用规格参数
-        String genericSpec = spuDetail.getGenericSpec();
-        JsonUtils.toMap(genericSpec,String.class,String.class);
+        Map<String,String> genericSpec = JsonUtils.toMap(spuDetail.getGenericSpec(),String.class,String.class);
         //特有规格参数
         String json = spuDetail.getSpecialSpec();
         Map<String,List<String>> specialSpec = JsonUtils.nativeRead(json, new TypeReference<Map<String, List<String>>>() {
         });
         //处理规格参数
         Map<String,Object> specs = new HashMap<>();
+        for(SpecParam param : params){
+            String key = param.getName();
+            Object value;
+            if(param.getGeneric()){
+                value = genericSpec.get(param.getId());
+                //判断是否是数值类型
+                if(param.getNumeric()){
+                    value = chooseSegment(value.toString(),param);
+                }
+            }
+            else{
+                value = specialSpec.get(param.getId());
+            }
+            //存入map
+            specs.put(key,value);
+        }
 
         Goods goods = new Goods();
 
@@ -101,5 +123,31 @@ public class SearchService {
         goods.setSpecs(null); //TODO 所有可搜索的规格参数
 
         return goods;
+    }
+
+    private String chooseSegment(String value,SpecParam param){
+        double val = NumberUtils.toDouble(value);
+        String result = "其他";
+        for(String segment : param.getSegments().split(",")){
+            String[] segs = segment.split("-");
+            double begin = NumberUtils.toDouble(segs[0]);
+            double end = Double.MAX_VALUE;
+            if(segs.length == 2){
+                end = NumberUtils.toDouble(segs[0]);
+            }
+            //判断是否在数值范围内
+            if(val >= begin && val < end){
+                if(segs.length == 1){
+                    result = segs[0] + param.getUnit() + "以上";
+                }
+                else if(begin == 0){
+                    result = segs[1] + param.getUnit() + "以下";
+                }
+                else{
+                    result = segment + param.getUnit();
+                }
+            }
+        }
+        return result;
     }
 }

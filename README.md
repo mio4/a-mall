@@ -144,6 +144,18 @@ axios 一些小的Demo如下：
 
 
 
+```cmd
+# 运行manage.leyou.com项目
+npm run dev
+# 获取spu列表
+http://localhost:8081/spu/page?page=1&rows=100&saleable=true #能够查询到结果
+http://item-service/spu/page?page=1&rows=100&saleable=true #访问超时，不能查询到结果
+```
+
+
+
+
+
 
 
 ### 学习进度  2019/5/19
