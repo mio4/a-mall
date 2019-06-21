@@ -7,6 +7,8 @@ spring:
     elasticsearch:
       cluster-name: elasticsearch
       cluster-nodes: 192.168.92.129:9300 #节点IP？
+  jackson:
+    default-property-inclusion: non_null #排除返回JSON结果的null字段
 eureka:
   client:
     service-url:

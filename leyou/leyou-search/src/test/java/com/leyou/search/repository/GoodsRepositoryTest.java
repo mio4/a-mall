@@ -45,7 +45,7 @@ public class GoodsRepositoryTest {
     public void loadData() throws LyException {
         int page = 1;
         int rows = 100;
-        int size = 0;
+        int size;
         do {
             //查询SPU信息
             PageResult<Spu> result = goodsClient.querySpuByPage(page, rows, true, null);
@@ -54,7 +54,7 @@ public class GoodsRepositoryTest {
             if(CollectionUtils.isEmpty(spuList)){
                 break;
             }
-
+printList(spuList);
             //构建成Goods
             List<Goods> goodsList = new ArrayList<>();
             for (Spu spu : spuList) {
@@ -68,6 +68,12 @@ public class GoodsRepositoryTest {
             page++;
             size = spuList.size();
         } while (size == 100);
+    }
+
+    private void printList(List<Spu> list){
+        for(Spu spu : list){
+            System.out.println(spu);
+        }
     }
 
 }

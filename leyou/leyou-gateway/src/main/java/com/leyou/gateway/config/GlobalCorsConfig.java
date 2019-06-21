@@ -13,6 +13,7 @@ import org.springframework.web.filter.CorsFilter;
 public class GlobalCorsConfig {
 
     private static final String domain = "http://manage.leyou.com";
+    private static final String domain2 = "http://www.leyou.com";
 
     @Bean
     public CorsFilter corsFilter() {
@@ -20,6 +21,7 @@ public class GlobalCorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         //  1) 允许的域,不要写*，否则cookie就无法使用了
         config.addAllowedOrigin(domain);
+        config.addAllowedOrigin(domain2);
         //  2) 是否发送Cookie信息
         config.setAllowCredentials(true);
         //  3) 允许的请求方式

@@ -82,11 +82,34 @@
 ### 2.5 难点
 
 1. ElasticSearch实现商品搜索功能
+2. 如何通过后台处理跨域请求，解决403 Forbidden问题
 
-# 0x1 后台管理系统
+# 0x1 后端
+
+## 微服务架构
 
 
-## 1.1 前后端API交互文档
+
+## application.yml配置详解
+
+```cmd
+
+```
+
+
+## Spring常用注解
+### @RestController
+
+### @PostMapping
+
+### @RequestBody 
+
+
+
+# 0x2 manage.leyou.com 后台管理系统
+
+
+## 2.1 管理系统交互API
 
 | 功能 | 请求方法 | 请求路径  | 请求体 | 说明  | 响应体  | 说明|
 | --- | ------- | -------- | ----- | ---- | ----- | ----- |
@@ -95,17 +118,44 @@
 
 
 
-# 0x2 前台门户网站
 
-## 2.1ElasticSearch
+# 0x3 www.leyou.com前台门户网站
+
+## 3.1ElasticSearch
+
+### 实现搜索功能
+
+向后台发送API
 
 
 
+### Vue
+
+created函数 data 
+
+一些注解：
+
+@mouseenter
+
+@keyup
+
+v-for
+
+差值表达式{{}}
+
+# 0x4 技巧
+
+chrome vue 插件
+
+TODO-配置elasticSearch nginx mysql 开机自启动
 
 
-# 0x3 细节分析
 
-## 3.1
+# 0x5 基础知识
+
+vue基础知识
+
+spring基础知识
 
 
 
@@ -147,6 +197,8 @@ axios 一些小的Demo如下：
 ```cmd
 # 运行manage.leyou.com项目
 npm run dev
+# 运行www.leyou.com
+live-server --port=9002
 # 获取spu列表
 http://localhost:8081/spu/page?page=1&rows=100&saleable=true #能够查询到结果
 http://item-service/spu/page?page=1&rows=100&saleable=true #访问超时，不能查询到结果

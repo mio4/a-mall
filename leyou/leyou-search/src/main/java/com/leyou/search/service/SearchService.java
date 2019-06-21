@@ -4,15 +4,23 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.leyou.common.enums.ExceptionEnum;
 import com.leyou.common.exception.LyException;
 import com.leyou.common.utils.JsonUtils;
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.pojo.*;
 import com.leyou.search.client.BrandClient;
 import com.leyou.search.client.CategoryClient;
 import com.leyou.search.client.GoodsClient;
 import com.leyou.search.client.SpecificationClient;
 import com.leyou.search.pojo.Goods;
+import com.leyou.search.pojo.SearchRequest;
+import com.leyou.search.repository.GoodsRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -33,8 +41,11 @@ public class SearchService {
     @Autowired
     private SpecificationClient specificationClient;
 
+    @Autowired
+    private GoodsRepository goodsRepository;
+
     /**
-     *
+     * TODO 将下面JDK8的特性多加理解
      * @param spu
      * @return
      * @throws LyException
@@ -50,7 +61,7 @@ public class SearchService {
             category_names.add(category.getName());
         }
         //all-品牌
-        Brand brand = brandClient.queryBrandById(spu.getId());
+        Brand brand = brandClient.queryBrandById(spu.getBrandId());
         if(brand == null){
             throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
         }
@@ -76,20 +87,15 @@ public class SearchService {
             prices.add(sku.getPrice());
         }
 
-        //TODO 开始使用AOC技能
-        //1. 在规定时间内完完成项目——时间有限，不能有摸鱼的状态
-        //2. 保证项目完成的质量——吸收大部分的代码以及编程思想
-
         //查询规格参数&商品详情
         List<SpecParam> params = specificationClient.queryParamList(null,spu.getCid3(),true);
         SpuDetail spuDetail = goodsClient.queryDetailById(spu.getId());
         //通用规格参数
-        Map<String,String> genericSpec = JsonUtils.toMap(spuDetail.getGenericSpec(),String.class,String.class);
+        Map<Long,String> genericSpec = JsonUtils.toMap(spuDetail.getGenericSpec(),Long.class,String.class);
         //特有规格参数
-        String json = spuDetail.getSpecialSpec();
-        Map<String,List<String>> specialSpec = JsonUtils.nativeRead(json, new TypeReference<Map<String, List<String>>>() {
-        });
+        Map<Long,List<String>> specialSpec = JsonUtils.nativeRead(spuDetail.getSpecialSpec(), new TypeReference<Map<Long, List<String>>>() {});
         //处理规格参数
+//        printList(params);
         Map<String,Object> specs = new HashMap<>();
         for(SpecParam param : params){
             String key = param.getName();
@@ -149,5 +155,34 @@ public class SearchService {
             }
         }
         return result;
+    }
+
+    private void printList(List<SpecParam> list){
+        for(SpecParam o : list){
+            System.out.println(o);
+        }
+    }
+
+    public PageResult<Goods> search(SearchRequest request) {
+        int page = request.getPage()-1;
+        int size = request.getSize();
+
+        //创建查询构造器
+        NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
+        //只查询指定字段
+        queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{"id","subTitle","skus"},null));
+        //分页操作
+        queryBuilder.withPageable(PageRequest.of(page,size));
+        //过滤
+        queryBuilder.withQuery(QueryBuilders.matchQuery("all",request.getKey()));
+        //查询
+        Page<Goods> result = goodsRepository.search(queryBuilder.build());
+        //解析结果
+        long total = result.getTotalElements();
+        int totalPage = result.getTotalPages();
+        List<Goods> goodsList = result.getContent();
+
+        //封装返回
+        return new PageResult<>(total,totalPage,goodsList);
     }
 }

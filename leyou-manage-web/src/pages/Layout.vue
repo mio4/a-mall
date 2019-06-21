@@ -23,7 +23,7 @@
         </v-list>
       </v-toolbar>
       <v-divider/>
-      <!-- 左侧菜单 -->
+      <!-- 左侧菜单 -->v
       <v-list class="pt-0" dense>
         <v-list-group
           v-model="item.active"

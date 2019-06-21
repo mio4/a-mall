@@ -41,4 +41,6 @@ public class Spu {
     private List<Sku> skus;
     @Transient
     private SpuDetail spuDetail;
+
+
 }
