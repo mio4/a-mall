@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        msg: <span th:text="${msg}"></span>
+        <br>
+        Hello
+        <br>
+        Hello2
+        <br>
+        <span th:text="${user.getName().toUpperCase()}"></span>
+        <span th:text="${user.friend.name}"></span>
+
+    </h1>
+
+    <br>
+    <span th:text="'<font color=\'red\'>hello</font>'"></span>
+    <span th:utext="'<font color=\'red\'>hello</font>'"></span>
+
+    <br>
+    <span th:text="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}"></span>
+
+    <br>
+    <span th:text="100 * 200"></span>
+    <span th:text="100 + 200"></span>
+</body>
+</html>

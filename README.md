@@ -83,6 +83,7 @@
 
 1. ElasticSearch实现商品搜索功能
 2. 如何通过后台处理跨域请求，解决403 Forbidden问题
+3. 将整个服务部署到阿里云服务器——环境配置+域名解析
 
 # 0x1 后端
 
@@ -119,49 +120,106 @@
 
 
 
-# 0x3 www.leyou.com前台门户网站
+# 0x3 www.leyou.com 前台门户网站
 
 ## 3.1ElasticSearch
+
+
+
+![](assets/slide_page.png)
+
+![](assets/search_filter.png)
+
+
 
 ### 实现搜索功能
 
 向后台发送API
 
+前端实现分页
+
+```cmd
+www.leyou.com
+www.leyou.com/search.html?key=xxx&page=1
+
+```
+
+```cmd
+TODO
+修复报错
+--day 14搜索过滤--
+java.lang.ClassCastException: org.elasticsearch.search.aggregations.bucket.terms.UnmappedTerms cannot be cast to org.elasticsearch.search.aggregations.bucket.terms.StringTerms
 
 
-### Vue
+```
 
-created函数 data 
+## 商品详情页
 
-一些注解：
+### ThymeLeaf
 
+thymeleaf一般用法：将model中的属性提取显示到html中
+
+```
+# 在Spring工程中使用ThymeLeaf
+
+1. SpringBoot创建子moudle
+2. pom.xml中导入thymeleaf依赖
+3. HTML文件导入"xmlns:th="http://www.thymeleaf.org"命名空间
+4. applicaiton.yml中关闭页面缓存
+(5).更新页面之后Ctrl+Shift+F9重新编译html页面
+```
+
+
+
+## 3.2 Vue
+
+### 注解
+
+```cmd
 @mouseenter
 
 @keyup
+```
 
-v-for
 
-差值表达式{{}}
+
+```cmd
+插值表达式{{}}
+
+data:{}
+create(){}
+watch:{}
+methods:{}
+```
+
+
 
 # 0x4 技巧
 
-chrome vue 插件
+## IDEA常用快捷键
 
-TODO-配置elasticSearch nginx mysql 开机自启动
+```cmd
+# 编辑器
+sout => System.out.println
+psvm => public static void main(){}
+# 列编辑模式
+Alt + CapsLock + 鼠标左键
+```
 
+## Vue
 
+```cmd
+Chrome Vue插件
+```
 
-# 0x5 基础知识
+## Linux开机启动配置
 
-vue基础知识
-
-spring基础知识
-
-
-
-
-
-
+```cmd
+TODO
+# MySQL
+# ElasticSearch
+# Ngnx
+```
 
 
 

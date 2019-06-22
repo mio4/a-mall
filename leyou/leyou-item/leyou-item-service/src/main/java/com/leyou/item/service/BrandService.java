@@ -93,4 +93,26 @@ public class BrandService {
         }
         return brands;
     }
+
+    public List<Brand> queryBrandByIds(List<Long> ids) throws LyException {
+        List<Brand> brands = brandMapper.selectByIdList(ids);
+//        printBrandList(brands);
+//        printList(ids);
+        if(brands == null){
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brands;
+    }
+
+    private void printBrandList(List<Brand> res){
+        for (Brand brand : res){
+            System.out.println(brand);
+        }
+    }
+
+    private void printList(List<Long> ids){
+        for(Long id : ids){
+            System.out.println(id);
+        }
+    }
 }
