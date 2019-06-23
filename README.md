@@ -91,6 +91,120 @@
 
 
 
+### Nginx
+
+```cmd
+# Nginx配置文件
+/opt/nginx/bin/nginx.conf 
+# 重启Nginx
+nginx -s reload
+# Nginx配置文件说明
+
+```
+
+Nginx配置文件说明
+
+```cmd
+#user  nobody;
+user root;
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+   
+    keepalive_timeout  65;
+
+    gzip  on;
+
+    server {
+        listen       80;
+        server_name  image.leyou.com;
+
+       # location /group1/M00/ {
+       #      root /home/leyou/fastdfs/storage/data;
+       #      ngx_fastdfs_module;
+       # }
+
+        location ~/group([0-9])/ {
+             ngx_fastdfs_module;
+        }
+
+        location / {
+            root   /leyou/static;
+	    index  index.html index.htm;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+        
+    }
+    server {
+        listen       80;
+        server_name  www.leyou.com;
+
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        location /item{
+            proxy_pass http://10.135.239.33:8084;
+            proxy_connect_timeout 600;
+            proxy_read_timeout 600;
+        }
+
+        location / {
+            proxy_pass http://10.135.239.33:9002;
+            proxy_connect_timeout 600;
+            proxy_read_timeout 600;
+        }
+    }
+    server {
+        listen       80;
+        server_name  manage.leyou.com;
+
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        location / {
+            proxy_pass http://10.135.239.33:9001;
+            proxy_connect_timeout 600;
+            proxy_read_timeout 600;
+        }
+    }
+    server {
+        listen       80;
+        server_name  api.leyou.com;
+
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        location / {
+            proxy_pass http://10.135.239.33:10010;
+            proxy_connect_timeout 600;
+            proxy_read_timeout 600;
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
 ## application.yml配置详解
 
 ```cmd
@@ -104,6 +218,17 @@
 ### @PostMapping
 
 ### @RequestBody 
+
+## Spring工程
+
+```
+需要关注哪些方面：
+1. pom.xml——maven配置文件
+2. application.yml配置文件
+3. XXXApplication启动类
+4. 常用的注解
+5. 聚合模块的配置
+```
 
 
 
@@ -122,7 +247,7 @@
 
 # 0x3 www.leyou.com 前台门户网站
 
-## 3.1ElasticSearch
+## 3.1 ElasticSearch
 
 
 
@@ -153,7 +278,7 @@ java.lang.ClassCastException: org.elasticsearch.search.aggregations.bucket.terms
 
 ```
 
-## 商品详情页
+## 3.2 商品详情页
 
 ### ThymeLeaf
 
@@ -171,7 +296,7 @@ thymeleaf一般用法：将model中的属性提取显示到html中
 
 
 
-## 3.2 Vue
+## 3.3 Vue
 
 ### 注解
 
@@ -244,7 +369,9 @@ axios 一些小的Demo如下：
 
 
 
+---
 
+分割线
 
 ---
 

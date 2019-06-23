@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SpecificationService {
@@ -49,5 +52,26 @@ public class SpecificationService {
 
     public void saveGroup(SpecGroup group) {
         groupMapper.insert(group);
+    }
+
+    public List<SpecGroup> queryListByCid(Long cid) throws LyException {
+        //查询规格组
+        List<SpecGroup> specGroups = queryGroupByCid(cid);
+        //查询组内参数
+        List<SpecParam> params = queryParamList(null, cid, null);
+        //填充params到specGroups
+        Map<Long, List<SpecParam>> param_map = new HashMap<>();
+        for(SpecParam specParam : params){
+            if(!param_map.containsKey(specParam.getGroupId())){ //组id在map中不存在
+                param_map.put(specParam.getGroupId(),new ArrayList<>());
+            }
+            param_map.get(specParam.getGroupId()).add(specParam);
+        }
+
+        for(SpecGroup specGroup : specGroups){
+            specGroup.setParams(param_map.get(specGroup.getId()));
+        }
+
+        return specGroups;
     }
 }

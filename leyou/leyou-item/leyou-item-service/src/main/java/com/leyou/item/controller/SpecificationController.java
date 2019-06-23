@@ -57,4 +57,14 @@ public class SpecificationController {
         specificationService.addParam(specParam);
     }
 
+    /**
+     * 根据分类查询规格组和组内参数
+     * @param cid
+     * @return
+     */
+    @GetMapping("spec/group")
+    public ResponseEntity<List<SpecGroup>> queryListByCid(@RequestParam("cid") Long cid) throws LyException {
+        return ResponseEntity.ok(specificationService.queryListByCid(cid));
+    }
+
 }

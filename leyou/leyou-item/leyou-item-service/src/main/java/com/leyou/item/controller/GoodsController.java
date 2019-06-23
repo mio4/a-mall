@@ -68,4 +68,14 @@ public class GoodsController {
     public ResponseEntity<List<Sku>> querySkuBySpuId(@RequestParam("id") Long spuId) throws LyException {
         return ResponseEntity.ok(goodsService.querySkuBySpuId(spuId));
     }
+
+    /**
+     * 根据id查询SPU信息
+     * @param id
+     * @return
+     */
+    @GetMapping("spu/{id}")
+    public ResponseEntity<Spu> querySpuById(@PathVariable("id") Long id) throws LyException {
+        return ResponseEntity.ok(goodsService.querySpuById(id));
+    }
 }

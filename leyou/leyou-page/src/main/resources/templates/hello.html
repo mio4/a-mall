@@ -27,5 +27,24 @@
     <br>
     <span th:text="100 * 200"></span>
     <span th:text="100 + 200"></span>
+
+    <br>
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.name}"></span>
+            <span th:text="${user.age}"></span>
+        </li>
+    </ul>
+
+<script th:inline="javascript">
+    const users = /*[[${users}]]*/[];
+
+    const user = users[0];
+    console.log(users.length);
+
+    for(let i in users){
+        console.log(users[i]);
+    }
+</script>
 </body>
 </html>
