@@ -16,6 +16,8 @@
 - [ ] 开启80、8080 | 8001、9002、10086、10010端口
 - [x] 配置FastDFS，tracker端口22122，storage端口23000
 - [x] 配置Nginx
+- [ ] RabbitMQ
+- [ ] Redis
 - [ ] MySQL
 - [ ] JDK 8
 
@@ -36,9 +38,12 @@
 
 2. 线上环境
 
-  TODO
-
+```
+# TODO
 ![online_process]()
+```
+
+
 
 
 ### 2.2 实现功能
@@ -87,11 +92,43 @@
 
 # 0x1 后端
 
+## 线上部署
+
+```
+本地虚拟机环境和阿里云线上环境之间有很多区别，需要注意的事项：
+（1）保持阿里云和虚拟机操作系统相同（CentOS 6）
+（2）保持软件安装配置相同（MySQL Redis RabbitMQ等）
+（3）本地环境和线上环境的区别（主要是IP、端口以及文件路径）,路径可以保持一致，所以主要需要解决IP问题
+
+需要注意的部分：
+（1）/opt/nginx/nginx.conf 域名、ip、端口，开放阿里云端口
+（2）商品页面静态化时，文件保存路径（leyou-page com.leyou.page.service.PageService）
+（3）RabbitMQ配置文件Host等（leyou-item-service application.yml RabbitMQ）
+（4）
+（5）
+（6）
+
+```
+
+
+
+
+
 ## 微服务架构
 
+### 微服务关系
 
 
-### Nginx
+
+````
+
+````
+
+
+
+
+
+### 反向代理服务器-Nginx
 
 ```cmd
 # Nginx配置文件
@@ -197,6 +234,53 @@ http {
 }
 ```
 
+### 消息队列-RabbitMQ
+
+为什么要使用消息队列
+
+- 商品详情页面使用了静态化，商品数据发生变化之后，保存在本地的静态化页面不会发生变化。
+- 搜索服务的数据来源是索引库，如果商品详情发生变化，索引库数据不会自动更新。
+
+不同消息队列之间的对比（为什么使用RabbitMQ）：
+
+- RabbitMQ：基于AMQP协议，erlang开发，稳定性好
+- RocketMQ：基于JMS（Java MessageService）（阿里巴巴淘宝团队）
+- Kafka：分布式消息系统，高吞吐量
+
+```cmd
+# 虚拟机rabbitmq慢启动优化
+https://blog.csdn.net/qq_37606901/article/details/87309881
+
+service rabbitmq-server start
+service rabbitmq-server stop
+service rabbitmq-server restart
+
+管理界面默认端口：15672
+默认用户 guest : guest
+
+```
+
+消息队列在项目中的使用：
+
+```
+CRUD商品时，商品详情页面和搜索页面之间接受到消息
+leyou-item
+leyou-page
+leyou-search
+```
+
+
+
+### 缓存数据库-Redis
+
+
+
+```
+
+```
+
+
+
 
 
 
@@ -219,6 +303,10 @@ http {
 
 ### @RequestBody 
 
+### @Runwith
+
+### @SpringBootTest
+
 ## Spring工程
 
 ```
@@ -229,6 +317,23 @@ http {
 4. 常用的注解
 5. 聚合模块的配置
 ```
+
+## Spring测试
+
+```
+@Runwith(SpringRunner.class)
+@SpringBootTest
+```
+
+## Spring日志记录
+
+```
+@Slf4j
+1. 日志如何记录到本地
+2. 控制日志记录的类型
+```
+
+
 
 
 
@@ -294,6 +399,12 @@ thymeleaf一般用法：将model中的属性提取显示到html中
 (5).更新页面之后Ctrl+Shift+F9重新编译html页面
 ```
 
+为了降低服务器的压力，实现页面的静态化（将HTML页面作为静态内容保存到服务器）
+
+```
+
+```
+
 
 
 
@@ -329,6 +440,7 @@ methods:{}
 # 编辑器
 sout => System.out.println
 psvm => public static void main(){}
+new xxx.var => xxx x = new xxx
 # 列编辑模式
 Alt + CapsLock + 鼠标左键
 ```

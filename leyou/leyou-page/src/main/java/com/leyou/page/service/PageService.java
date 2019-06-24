@@ -5,14 +5,21 @@ import com.leyou.page.client.BrandClient;
 import com.leyou.page.client.CategoryClient;
 import com.leyou.page.client.GoodsClient;
 import com.leyou.page.client.SpecificationClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class PageService {
 
@@ -27,6 +34,12 @@ public class PageService {
 
     @Autowired
     private SpecificationClient specificationClient;
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    //TODO 文件保存路径，服务器上和本机处于不同环境，如何自由切换
+    private String STATIC_FILE_PATH = "";
 
     public Map<String,Object> loadModel(Long id) {
         Map<String,Object> result = new HashMap<>();
@@ -88,5 +101,24 @@ public class PageService {
         return result;
     }
 
+    /**
+     * 生成静态页面，保存到本地
+     * @param spuId
+     */
+    public void createHtml(Long spuId){
+        //上下文
+        Context context = new Context();
+        context.setVariables(loadModel(spuId));
+        //输出流
+        File dest = new File("E:\\GitHub\\a-mall\\local\\static page", spuId + ".html");
+        try {
+            PrintWriter writer = new PrintWriter(dest);
+            //生成HTML
+            templateEngine.process("item",context,writer);
+        } catch (FileNotFoundException e) {
+            log.error("[静态页面服务] 生成静态页面异常");
+            e.printStackTrace();
+        }
+    }
 
 }
