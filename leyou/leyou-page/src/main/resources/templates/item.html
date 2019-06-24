@@ -658,7 +658,22 @@
     //特有规格参数集合
 
     const specialSpec = JSON.parse(/*[[${spuDetail.specialSpec}]]*/ "");
+    //FIXME 进行测试
+    // console.log(typeof paramMap);
+    // console.log(paramMap);
+
+    const tmp_paramMap = JSON.stringify(paramMap);
+
+    // const tmp = /*[[${spuDetail.specialSpec}]]*/ + "";
+    // console.log(tmp);
+    // console.log("@");
+
     //公有规格参数集合
+    const s = /*[[${spuDetail.genericSpec}]]*/ + "";
+    // console.log(s);
+    // console.log(typeof s);
+    const ss = JSON.parse(s);
+
     const genericSpec = JSON.parse(/*[[${spuDetail.genericSpec}]]*/ "");
 
     const indexes = {};
@@ -693,10 +708,31 @@
             sku() {
                 //根据用户点击计算得到indexes(加入this.indexes的值为[1,1,1]) join 之后 1_1_1
                 const index = Object.values(this.indexes).join("_");
+
+                //FIXME
+                // console.log("begin log index");
+                // // console.log(this.skus);
+                // for(let i in this.skus){
+                //     // console.log(i.indexes);
+                //     // console.log(i);
+                //     console.log(this.skus[i].indexes);
+                // }
+                // console.log(index);
+                // console.log(this.skus.find(s => s.indexes == index));
+                // console.log("end log index");
+
                 //在当前spu对应的所有的sku中查找这个indexes，如果和用户点击的一致那么用户选中的sku就获取到了
                 return this.skus.find(s => s.indexes == index);
             },
             images() {
+                //FIXME
+                // console.log("begin log");
+                // console.log(this.sku);
+                // console.log(this.sku.images);
+                // let t = this.sku.images ? this.sku.images.split(",") : [''];
+                // console.log(t);
+                // console.log("end log");
+
                 return this.sku.images ? this.sku.images.split(",") : ['']
             },
             specs() {
@@ -713,7 +749,7 @@
                             param.v = JSON.parse(this.sku.ownSpec)[param.id]
                         }
                     })
-                })
+                });
                 return groups;
             }
         },

@@ -62,7 +62,7 @@ public class SpecificationController {
      * @param cid
      * @return
      */
-    @GetMapping("spec/group")
+    @GetMapping("group")
     public ResponseEntity<List<SpecGroup>> queryListByCid(@RequestParam("cid") Long cid) throws LyException {
         return ResponseEntity.ok(specificationService.queryListByCid(cid));
     }
