@@ -111,6 +111,7 @@
 （5）RabbitMQ配置文件Host等（leyou-item-page application.yml RabbitMQ）
 （6）
 
+（1）SpringBoot项目，首先用maven打包jar，然后在服务器使用`java -jar xxx.jar`运行单个模块项目
 ```
 
 
@@ -311,6 +312,36 @@ service rabbitmq-server restart
 （1）@Controller注解Controller类
 （2）@Service注解Service类
 ```
+
+### @Autowired
+
+```
+
+```
+
+### @EnableDiscoveryClient
+
+```
+
+```
+
+
+
+### @EnableZuulProxy
+
+```
+
+```
+
+
+
+### @SpringCloudApplication
+
+```
+
+```
+
+
 
 ### @RestController
 
