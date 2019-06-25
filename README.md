@@ -5,6 +5,9 @@
 
 ## 2.项目总览
 ### 2.1 项目架构
+
+项目进度： 60%
+
 前台域名：www.mio4.com
 
 后台管理域名： manage.leyou.com
@@ -350,7 +353,7 @@ leyou-search
 ### @Data | @NoArgsConstrutor | @AllArgsConstructor
 
 ```
-（1）
+（1）git
 ```
 
 
