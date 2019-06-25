@@ -45,7 +45,7 @@
           <v-btn icon @click="editGoods(props.item)">
             <i class="el-icon-edit"/>
           </v-btn>
-          <v-btn icon>
+          <v-btn icon @click="deleteGoods(props.item)">
             <i class="el-icon-delete"/>
           </v-btn>
           <v-btn icon v-if="props.item.saleable">下架</v-btn>
@@ -164,6 +164,14 @@
         this.show = true;
         // 获取要编辑的goods
         this.oldGoods = oldGoods;
+      },
+      async deleteGoods(oldGoods){
+        //TODO 通过商品id删除商品
+        console.log(oldGoods.id);
+        //弹出弹窗
+        //弹窗确定之后删除商品
+        //弹窗取消之后取消行为
+        //更新表单，商品消失
       },
       closeWindow() {
         console.log(1)

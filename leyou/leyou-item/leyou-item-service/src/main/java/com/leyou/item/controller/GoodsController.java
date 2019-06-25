@@ -50,6 +50,30 @@ public class GoodsController {
     }
 
     /**
+     * 修改商品
+     * @param spu
+     * @return
+     * @throws LyException
+     */
+    @PutMapping("/goods")
+    public ResponseEntity<Void> updateGoods(@RequestBody Spu spu) throws LyException {
+        goodsService.updateGoods(spu);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    /**
+     * 删除商品
+     * @param spuId
+     * @return
+     * @throws LyException
+     */
+    @DeleteMapping("/goods")
+    public ResponseEntity<Void> deleteGoods(@RequestParam("spuId") Long spuId) throws LyException {
+        goodsService.deleteGoods(spuId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    /**
      * 查询商品详情
      * @param spuId
      * @return

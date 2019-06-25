@@ -307,4 +307,17 @@ public class SearchService {
         }
     }
 
+    public void createOrUpdateIndex(Long spuId) throws LyException {
+        //查询SPU
+        Spu spu = goodsClient.querySpuById(spuId);
+        //构建商品详情
+        Goods goods = buildGoods(spu);
+        //存入索引库
+        goodsRepository.save(goods);
+    }
+
+    public void deleteIndex(Long spuId) {
+        //删除索引库对应商品
+        goodsRepository.deleteById(spuId);
+    }
 }

@@ -104,8 +104,8 @@
 （1）/opt/nginx/nginx.conf 域名、ip、端口，开放阿里云端口
 （2）商品页面静态化时，文件保存路径（leyou-page com.leyou.page.service.PageService）
 （3）RabbitMQ配置文件Host等（leyou-item-service application.yml RabbitMQ）
-（4）
-（5）
+（4）RabbitMQ配置文件Host等（leyou-item-search application.yml RabbitMQ）
+（5）RabbitMQ配置文件Host等（leyou-item-page application.yml RabbitMQ）
 （6）
 
 ```
@@ -291,21 +291,81 @@ leyou-search
 
 ## application.yml配置详解
 
-```cmd
+```
+（1）Spring相关配置
+（2）Eureka相关配置
+（3）RabbitMQ相关配置
+```
+
+## Spring常用注解
+
+### @Controller | @Service
+
+```
+（1）@Controller注解Controller类
+（2）@Service注解Service类
+```
+
+### @RestController
+
+```
+（1）配合ResponseEntity使用
 
 ```
 
-
-## Spring常用注解
-### @RestController
-
 ### @PostMapping
+
+```
+
+```
 
 ### @RequestBody 
 
-### @Runwith
+```
 
-### @SpringBootTest
+```
+
+### @Component 
+
+```
+（1）注解到XXXListener中，将RabbitMQ监听器添加到Spring容器中
+```
+
+### @RabbitListener
+
+```
+（1）注解listen方法，绑定接受指定队列、交换机的消息接受方法，会自动执行
+（2）子注解
+	@QueueBinding
+	@Queue
+	@Exchange
+```
+
+### @Transactional
+
+```
+
+```
+
+### @Data | @NoArgsConstrutor | @AllArgsConstructor
+
+```
+（1）
+```
+
+
+
+### @Runwith | @SpringBootTest
+
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest
+（1）测试类运行的注解条件
+```
+
+
+
+### 
 
 ## Spring工程
 
@@ -459,6 +519,17 @@ TODO
 # ElasticSearch
 # Ngnx
 ```
+
+# 0x5 修复
+
+```
+（1）manage.leyou.com 后台管理系统修改删除商品
+（2）elasticSearch 商品查询服务debug
+```
+
+
+
+
 
 
 

@@ -102,7 +102,7 @@ public class PageService {
     }
 
     /**
-     * 生成静态页面，保存到本地
+     * 生成静态页面，保存到本地|服务器
      * @param spuId
      */
     public void createHtml(Long spuId){
@@ -112,12 +112,26 @@ public class PageService {
         //输出流
         File dest = new File("E:\\GitHub\\a-mall\\local\\static page", spuId + ".html");
         try {
+            if(dest.exists()){
+                dest.delete();
+            }
             PrintWriter writer = new PrintWriter(dest);
             //生成HTML
             templateEngine.process("item",context,writer);
         } catch (FileNotFoundException e) {
             log.error("[静态页面服务] 生成静态页面异常");
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 删除（服务器|本地）静态页面
+     * @param spuId
+     */
+    public void deleteHtml(Long spuId){
+        File dest = new File("E:\\GitHub\\a-mall\\local\\static page", spuId + ".html");
+        if(dest.exists()){
+            dest.delete();
         }
     }
 

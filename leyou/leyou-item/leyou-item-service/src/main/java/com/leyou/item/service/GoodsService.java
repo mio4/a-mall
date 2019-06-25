@@ -11,19 +11,26 @@ import com.leyou.item.mapper.SpuDetailMapper;
 import com.leyou.item.mapper.SpuMapper;
 import com.leyou.item.mapper.StockMapper;
 import com.leyou.item.pojo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * TODO 补充完成商品的增删改查
+ */
+@Slf4j
 @Service
 public class GoodsService {
 
@@ -39,7 +46,8 @@ public class GoodsService {
     private SkuMapper skuMapper;
     @Autowired
     private StockMapper stockMapper;
-
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
 
     public PageResult<Spu> querySpuByPage(Integer page, Integer rows, Boolean saleable, String key) throws LyException {
@@ -90,7 +98,6 @@ public class GoodsService {
      * 4. 新增Stock
      * @param spu
      */
-
     @Transactional
     public void saveGoods(Spu spu) throws LyException {
         Date currentDate = new Date(); //当前时间
@@ -128,6 +135,35 @@ public class GoodsService {
         }
         stockMapper.insertList(stock_list);
 
+        //发送消息
+        sendMessage("item.insert",spu.getId());
+    }
+
+    /**
+     * 修改商品
+     * （1）删除原有商品
+     * （2）新增商品
+     * @param spu
+     */
+    @Transactional
+    public void updateGoods(Spu spu){
+
+    }
+
+    /**
+     * 删除商品
+     * （1）删除SPU
+     * （2）删除SPU_Detail
+     * （3）删除SKU
+     * （4）删除Stock
+     * @Param spuId
+     */
+    @Transactional
+    public void deleteGoods(Long spuId){
+        int count = spuMapper.deleteByPrimaryKey(spuId);
+        if(count != 1){
+            throw new LyException(ExceptionEnum.GO)
+        }
     }
 
     public SpuDetail queryDetailById(Long spuId) throws LyException {
@@ -172,5 +208,18 @@ public class GoodsService {
         spu.setSpuDetail(queryDetailById(id));
 
         return spu;
+    }
+
+    /**
+     * 向消息队列发送一条消息
+     * @param id 商品id
+     * @param routingKey
+     */
+    private void sendMessage(String routingKey,Long id){
+        try{
+            amqpTemplate.convertAndSend(routingKey,id);
+        }catch (Exception e){
+            log.error("[GoodsService] 商品消息发送异常:{}，商品id:{}",routingKey,id,e);
+        }
     }
 }
