@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
-import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -146,24 +145,54 @@ public class GoodsService {
      * @param spu
      */
     @Transactional
-    public void updateGoods(Spu spu){
-
+    public void updateGoods(Spu spu) throws LyException {
+        deleteGoods(spu.getId());
+        saveGoods(spu);
     }
 
     /**
      * 删除商品
-     * （1）删除SPU
-     * （2）删除SPU_Detail
-     * （3）删除SKU
-     * （4）删除Stock
+     * （1）删除SKU
+     * （2）删除Stock
+     * （3）删除SPU
+     * （4）删除SPUDetail
      * @Param spuId
      */
     @Transactional
-    public void deleteGoods(Long spuId){
+    public void deleteGoods(Long spuId) throws LyException {
+
+        Spu spu = spuMapper.selectByPrimaryKey(spuId);
+        if(spu == null){
+            throw new LyException(ExceptionEnum.GOODS_DELETE_FAILED);
+        }
+
+        List<Sku> skus = spu.getSkus();
+        if(skus != null) {
+            for (Sku sku : skus) {
+                int sku_count = skuMapper.deleteByPrimaryKey(sku.getId());
+                if (sku_count != 1) {
+                    throw new LyException(ExceptionEnum.GOODS_DELETE_FAILED);
+                }
+                int stock_count = stockMapper.deleteByPrimaryKey(sku.getId());
+                if (stock_count != 1) {
+                    throw new LyException(ExceptionEnum.GOODS_DELETE_FAILED);
+                }
+            }
+        }
+
         int count = spuMapper.deleteByPrimaryKey(spuId);
         if(count != 1){
-            throw new LyException(ExceptionEnum.GO)
+            throw new LyException(ExceptionEnum.GOODS_DELETE_FAILED);
         }
+
+        count = spuDetailMapper.deleteByPrimaryKey(spuId);
+        if(count != 1){
+            throw new LyException(ExceptionEnum.GOODS_DELETE_FAILED);
+        }
+
+        //发送消息
+        sendMessage("item.delete",spuId);
+
     }
 
     public SpuDetail queryDetailById(Long spuId) throws LyException {

@@ -266,17 +266,20 @@ service rabbitmq-server restart
 消息队列在项目中的使用：
 
 ```
-CRUD商品时，商品详情页面和搜索页面之间接受到消息
-leyou-item
-leyou-page
-leyou-search
+（1）后台管理系统增加、修改、删除商品信息时：
+	【1】leyou-page，通知商品详情页进行更新
+	【2】leyou-search，通知商品索引进行更新
+（2）
 ```
 
 
 
 ### 缓存数据库-Redis
 
+为什么要使用Redis
 
+- 
+- 
 
 ```
 
