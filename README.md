@@ -21,13 +21,14 @@
 - [x] 配置Nginx
 - [ ] RabbitMQ
 - [ ] Redis
-- [ ] MySQL
+- [x] MySQL
 - [ ] JDK 8
 
 ```
 (1)nginx
 	/opt/nginx/nginx.conf
-(2)	
+(2)mysql
+	通过yum install mysql-server
 ```
 
 整体架构：
