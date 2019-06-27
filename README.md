@@ -23,12 +23,18 @@
 - [ ] Redis
 - [x] MySQL
 - [ ] JDK 8
+- [x] lrzsz
 
 ```
 (1)nginx
 	/opt/nginx/nginx.conf
 (2)mysql
 	通过yum install mysql-server
+(3)lrzsz
+	yum -y install lrzsz
+(4)php-fpm	
+	编译安装
+
 ```
 
 整体架构：
