@@ -24,6 +24,12 @@
 - [ ] MySQL
 - [ ] JDK 8
 
+```
+(1)nginx
+	/opt/nginx/nginx.conf
+(2)	
+```
+
 整体架构：
 1. 虚拟机模拟
 
