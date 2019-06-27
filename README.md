@@ -19,22 +19,58 @@
 - [ ] 开启80、8080 | 8001、9002、10086、10010端口
 - [x] 配置FastDFS，tracker端口22122，storage端口23000
 - [x] 配置Nginx
-- [ ] RabbitMQ
+- [x] RabbitMQ
 - [ ] Redis
 - [x] MySQL
-- [ ] JDK 8
+- [x] JDK 8
 - [x] lrzsz
+- [ ] ElasticSearch
+- [ ] FastDFS
 
 ```
 (1)nginx
 	/opt/nginx/nginx.conf
+	[1]配置支持php-fpm 6666
+		http://39.105.222.221
+		File Not Found
+		(1)www文件权限
+		(2)以root用户开启php-fpm /usr/local/php/sbin/php-fpm -R
+	[2]
+	
 (2)mysql
 	通过yum install mysql-server
 (3)lrzsz
 	yum -y install lrzsz
-(4)php-fpm	
-	编译安装
+(4)php-fpm
+	/user/local/php
+	教程：http://www.wj008.net/article/index/5
+	编译安装 make && make install
+	开启自启动 chkconfig php-fpm on 
+	版本 php -v 7.2.8
+	默认端口：9000
+	启动：/etc/init.d/php-fpm start
+	关闭：/etc/init.d/php-fpm stop
+	[-]配置支持Redis
+(5)JDK 8
+	/usr/local/java/jdk1.8.0_211
+	vim /etc/profile
+	source /etc/profile
+(6)ElasticSearch
+(7)FastDFS
 
+---
+文件夹传输：从mac到centos
+scp -r "/Users/zhangjin19/Desktop/实习/12 新人串讲-opencdn项目总结/mio-opencdn-api/www" root@39.105.222.221:/path
+
+scp -r "/Users/zhangjin19/Desktop/实习/12 新人串讲-opencdn项目总结/mio-opencdn-api/www" root@39.105.222.221:/home/leyou/lnmp
+---
+开放chrome 特殊端口
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --explicitly-allowed-ports=6666
+---
+nginx.conf配置文件-todo
+	http://39.105.222.221:6666/定向到http://39.105.222.221:80端口问题
+	http://39.105.222.221:6666/ File Not Found问题
+	
 ```
 
 整体架构：
