@@ -29,4 +29,8 @@ public class UserService {
         int count = userMapper.selectCount(user);
         return count == 0;
     }
+
+    public void sendCode(String phone) {
+
+    }
 }
