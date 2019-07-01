@@ -337,6 +337,22 @@ service rabbitmq-server restart
 
 
 
+## 阿里云短信
+
+```
+短信控制台 https://dysms.console.aliyun.com/dysms.htm#/overview
+总控制台 https://ram.console.aliyun.com/permissions
+说明文档 https://help.aliyun.com/document_detail/102364.html?spm=a2c4g.11186623.6.615.2c342b76VvZOss
+（1）创建用户，申请AK/SK
+（2）申请签名
+（3）申请模板
+
+```
+
+
+
+
+
 
 
 
