@@ -28,6 +28,9 @@ public enum ExceptionEnum {
     //上传相关异常
     UPLOAD_ERROR(500,"文件上传失败"),
     INVALID_FILE_TYPE(400,"文件类型不匹配"),
+
+    //用户相关异常
+    INVALID_USER_DATA_TYPE(400,"无效用户数据类型"),
     ;
     private int code;
     private String msg;

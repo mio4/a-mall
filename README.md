@@ -158,7 +158,8 @@ nginx.conf配置文件-todo
 （3）RabbitMQ配置文件Host等（leyou-item-service application.yml RabbitMQ）
 （4）RabbitMQ配置文件Host等（leyou-item-search application.yml RabbitMQ）
 （5）RabbitMQ配置文件Host等（leyou-item-page application.yml RabbitMQ）
-（6）
+（6）application.yml中datasource数据库密码配置（线下密码和线上密码不同）
+（7）阿里云线上数据库允许外部连接方式
 
 （1）SpringBoot项目，首先用maven打包jar，然后在服务器使用`java -jar xxx.jar`运行单个模块项目
 ```
@@ -319,7 +320,8 @@ service rabbitmq-server restart
 （1）后台管理系统增加、修改、删除商品信息时：
 	【1】leyou-page，通知商品详情页进行更新
 	【2】leyou-search，通知商品索引进行更新
-（2）
+（2）用户注册、登录
+	【1】短信微服务，向leyou-sms发送消息
 ```
 
 
@@ -337,17 +339,24 @@ service rabbitmq-server restart
 
 
 
-## 阿里云短信
+
+
+## 聚合数据-短信SMS服务
 
 ```
-短信控制台 https://dysms.console.aliyun.com/dysms.htm#/overview
-总控制台 https://ram.console.aliyun.com/permissions
-说明文档 https://help.aliyun.com/document_detail/102364.html?spm=a2c4g.11186623.6.615.2c342b76VvZOss
-（1）创建用户，申请AK/SK
-（2）申请签名
-（3）申请模板
+> 阿里云/百度SMS服务需要企业认证，并且付费较高，使用“聚合数据”
+https://www.juhe.cn/docs/api/id/5
 
+需要解决的问题：
+1. 如何判断短信是否发送成功——消息队列的反馈消息
+2. 短信限流机制
+3. 剩余短信条数不足5
+
+备用平台：
+https://www.yunpian.com/console/#/admin
 ```
+
+
 
 
 

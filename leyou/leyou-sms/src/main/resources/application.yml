@@ -1,0 +1,18 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+      host: 192.168.92.129
+      username: leyou
+      password: leyou
+      virtual-host: /leyou
+  # 引入Redis
+  redis:
+    host: 192.168.92.129
+# 短信AK/SK机制
+leyou:
+  sms:
+    tpl_id: 169543
+    key: 31a18416299c19bd1d838f03be33741d

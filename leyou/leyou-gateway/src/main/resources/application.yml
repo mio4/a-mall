@@ -16,18 +16,25 @@ zuul:
   prefix: /api # 添加路由前缀
   retryable: true
   routes:
+    # 商品微服务
     item-service:
       path: /item/**
 #      url: http://127.0.0.1:8081
       serviceId: item-service
 #      strip-prefix: false
+    # 文件上传服务
     upload-service:
       path: /upload/**
       serviceId: upload-service
       strip-prefix: false
+    # 搜索服务
     search-service:
       path: /search/**
       serviceId: search-service
+    # 用户服务
+    user-service:
+      path: /user/**
+      serviceId: user-service
 
 
 hystrix:

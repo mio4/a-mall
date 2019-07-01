@@ -15,6 +15,8 @@
         <module>leyou-upload</module>
         <module>leyou-search</module>
         <module>leyou-page</module>
+        <module>leyou-sms</module>
+        <module>leyou-user</module>
     </modules>
     <packaging>pom</packaging>
 
