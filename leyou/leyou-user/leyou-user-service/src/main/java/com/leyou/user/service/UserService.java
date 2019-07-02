@@ -69,6 +69,9 @@ public class UserService {
 
 
     public void register(User user, String code) throws LyException {
+        //TODO 后端数据校验-用户名、手机号、账号、密码
+
+
         //校验验证码
         String cache_code = stringRedisTemplate.opsForValue().get(KEY_PREFIX + user.getPhone());
         if(!StringUtils.equals(cache_code,code)){

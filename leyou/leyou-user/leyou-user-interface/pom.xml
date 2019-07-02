@@ -20,6 +20,11 @@
             <artifactId>mapper-core</artifactId>
             <version>1.0.4</version>
         </dependency>
+        <!--Hibernate Validator-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>javax.persistence</groupId>

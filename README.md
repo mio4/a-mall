@@ -328,20 +328,14 @@ service rabbitmq-server restart
 
 ### 缓存数据库-Redis
 
-为什么要使用Redis
-
-- 
-- 
-
+```
+为什么要使用Redis?
+（1）用户注册时，验证码保存到Redis中，设置一定缓存时间，实现用户注册功能
+（2）
 ```
 
-```
+### 聚合数据-短信SMS服务
 
-
-
-
-
-## 聚合数据-短信SMS服务
 
 ```
 > 阿里云/百度SMS服务需要企业认证，并且付费较高，使用“聚合数据”
@@ -355,6 +349,14 @@ https://www.juhe.cn/docs/api/id/5
 备用平台：
 https://www.yunpian.com/console/#/admin
 ```
+
+### 用户注册
+
+```
+1. 使用Hibernate Validator（注解开发）进行后端数据校验
+```
+
+
 
 
 

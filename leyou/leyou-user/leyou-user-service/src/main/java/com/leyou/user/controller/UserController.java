@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Controller
 public class UserController {
 
@@ -49,7 +51,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public ResponseEntity<Boolean> register(User user,
+    public ResponseEntity<Boolean> register(@Valid User user,
                                             @RequestParam("code") String code) throws LyException {
 
         userService.register(user,code);
