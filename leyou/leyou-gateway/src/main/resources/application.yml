@@ -35,6 +35,10 @@ zuul:
     user-service:
       path: /user/**
       serviceId: user-service
+    # 授权中心
+    auth-service:
+      path: /auth/**
+      serviceId: auth-service
 
 
 hystrix:

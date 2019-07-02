@@ -359,8 +359,15 @@ https://www.yunpian.com/console/#/admin
 ### 授权中心
 
 ```
+授权中心的作用：
+
+JWT（Json Web Token）是什么：
+
+RSA算法（非对称加密算法——分为公钥和私钥，公钥加密的内容只有私钥才能解密，私钥加密的内容可以用公钥和私钥解密）
 
 ```
+
+![](assets/JWT.png)
 
 
 
