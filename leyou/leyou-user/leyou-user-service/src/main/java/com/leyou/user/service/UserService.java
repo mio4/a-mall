@@ -71,7 +71,6 @@ public class UserService {
     public void register(User user, String code) throws LyException {
         //TODO 后端数据校验-用户名、手机号、账号、密码
 
-
         //校验验证码
         String cache_code = stringRedisTemplate.opsForValue().get(KEY_PREFIX + user.getPhone());
         if(!StringUtils.equals(cache_code,code)){
@@ -84,5 +83,25 @@ public class UserService {
         user.setCreated(new Date());
         //写入数据库
         userMapper.insert(user);
+    }
+
+    public User queryUserByUsernameAndPassword(String username, String password) throws LyException {
+        User user = new User();
+        user.setUsername(username);
+        User record = userMapper.selectOne(user);
+        // 校验用户名
+        if(user == null){
+            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+        }
+
+        //校验密码-使用salt
+        String salt = record.getSalt();
+        String generate_password = CodeUtils.md5Hex(password,salt);
+        if(!StringUtils.equals(password,generate_password)){
+            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+        }
+
+        //用户名和密码校验正确
+        return record;
     }
 }

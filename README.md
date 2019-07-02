@@ -356,6 +356,12 @@ https://www.yunpian.com/console/#/admin
 1. 使用Hibernate Validator（注解开发）进行后端数据校验
 ```
 
+### 授权中心
+
+```
+
+```
+
 
 
 

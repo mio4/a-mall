@@ -60,6 +60,18 @@ public class UserController {
     }
 
 
+    /**
+     * TODO maybe bug
+     * 根据用户名和密码查询用户
+     * @param username
+     * @param password
+     * @return
+     */
+    @GetMapping("/query")
+    public ResponseEntity<User> queryUserByUsernameAndPassword(@RequestParam("username") String username,
+                                                               @RequestParam("password") String password) throws LyException {
+        return ResponseEntity.ok(userService.queryUserByUsernameAndPassword(username,password));
+    }
 
 
 
