@@ -160,6 +160,7 @@ nginx.conf配置文件-todo
 （5）RabbitMQ配置文件Host等（leyou-item-page application.yml RabbitMQ）
 （6）application.yml中datasource数据库密码配置（线下密码和线上密码不同）
 （7）阿里云线上数据库允许外部连接方式
+（8）JWT认证系统——公钥和私钥的生成地址（leyou-auth-service/application.yml中配置）
 
 （1）SpringBoot项目，首先用maven打包jar，然后在服务器使用`java -jar xxx.jar`运行单个模块项目
 ```

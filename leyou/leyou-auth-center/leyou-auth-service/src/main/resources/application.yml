@@ -16,7 +16,7 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
 leyou:
   jwt:
-    secret: ly@login(Auth^^mio4) #登录校验的密钥
-    pubKeyPath: .pub #公钥地址
-    priKeyPath: .pri #私钥地址
+    secret: leyou@login(Auth^^mio4hiahia233) #登录校验的密钥
+    pubKeyPath: E:/GitHub/a-mall/local/rsa.pub #公钥地址
+    priKeyPath: E:/GitHub/a-mall/local/rsa.pri #私钥地址
     expire: 30 #过期时间，单位分钟
