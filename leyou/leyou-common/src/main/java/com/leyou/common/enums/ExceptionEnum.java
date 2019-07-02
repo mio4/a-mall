@@ -31,6 +31,7 @@ public enum ExceptionEnum {
 
     //用户相关异常
     INVALID_USER_DATA_TYPE(400,"无效用户数据类型"),
+    INVALID_VERIFY_CODE(400,"无效的验证码")
     ;
     private int code;
     private String msg;

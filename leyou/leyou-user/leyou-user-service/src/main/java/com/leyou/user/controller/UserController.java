@@ -1,6 +1,7 @@
 package com.leyou.user.controller;
 
 import com.leyou.common.exception.LyException;
+import com.leyou.user.pojo.User;
 import com.leyou.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -34,11 +36,32 @@ public class UserController {
      * @param phone
      * @return
      */
-    @GetMapping("/code")
+    @PostMapping("/code")
     public ResponseEntity<Boolean> sendCode(@RequestParam("phone") String phone){
         userService.sendCode(phone);
-        //TODO .build为啥是没有返回值
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    /**
+     * 用户注册
+     * @param user 接收username、password、phone
+     * @param code 短信验证码
+     * @return
+     */
+    @PostMapping("/register")
+    public ResponseEntity<Boolean> register(User user,
+                                            @RequestParam("code") String code) throws LyException {
+
+        userService.register(user,code);
+        //Build the response entity with no body.
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
+
+
+
+
 
 }
