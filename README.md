@@ -176,7 +176,8 @@ nginx.conf配置文件-todo
 
 
 ````
-
+1. 模块之间相互依赖，模块之间是如何调用的？（比如从UserController->UserApi->跨模块UserClient，调用其他模块的函数）
+2. @
 ````
 
 
@@ -418,6 +419,12 @@ RSA算法（非对称加密算法——分为公钥和私钥，公钥加密的�
 
 
 ### @EnableZuulProxy
+
+```
+
+```
+
+### @FeignClient("user-service")
 
 ```
 

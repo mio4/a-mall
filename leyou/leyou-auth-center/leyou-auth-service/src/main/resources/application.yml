@@ -20,3 +20,4 @@ leyou:
     pubKeyPath: E:/GitHub/a-mall/local/rsa.pub #公钥地址
     priKeyPath: E:/GitHub/a-mall/local/rsa.pri #私钥地址
     expire: 30 #过期时间，单位分钟
+    cookieName: auth_token
