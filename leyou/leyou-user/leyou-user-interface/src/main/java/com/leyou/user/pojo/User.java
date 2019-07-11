@@ -48,4 +48,15 @@ public class User {
     @JsonIgnore
     private String salt; //盐值
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", created=" + created +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
 }

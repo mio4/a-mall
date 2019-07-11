@@ -1,4 +1,4 @@
-package com.leyou.auth.client;
+package com.leyou.client;
 
 import com.leyou.user.api.UserApi;
 import org.springframework.cloud.openfeign.FeignClient;

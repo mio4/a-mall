@@ -1,6 +1,6 @@
 package com.leyou.auth.service;
 
-import com.leyou.auth.client.UserClient;
+import com.leyou.client.UserClient;
 import com.leyou.auth.config.JwtProperties;
 import com.leyou.auth.entity.UserInfo;
 import com.leyou.auth.utils.JwtUtils;
@@ -10,7 +10,6 @@ import com.leyou.user.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j

@@ -6,6 +6,7 @@ import com.leyou.common.utils.NumberUtils;
 import com.leyou.user.mapper.UserMapper;
 import com.leyou.user.pojo.User;
 import com.leyou.user.utils.CodeUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -57,11 +59,13 @@ public class UserService {
         String code = NumberUtils.generateCode(6);
 
         Map<String,String> msg = new HashMap<>();
-        msg.put("phone","18011194449");
+        msg.put("phone",phone);
         msg.put("code",code);
 
         //发送验证码
-        amqpTemplate.convertAndSend("ly.sms.exchange","sms.verify.code",msg);
+        //TODO 修复发送短信接口&购买短信服务
+//        amqpTemplate.convertAndSend("ly.sms.exchange","sms.verify.code",msg);
+        log.error("[发送的验证码]:{}",code);
 
         //保存到Redis
         stringRedisTemplate.opsForValue().set(key,code,5,TimeUnit.MINUTES);
@@ -69,11 +73,11 @@ public class UserService {
 
 
     public void register(User user, String code) throws LyException {
-        //TODO 后端数据校验-用户名、手机号、账号、密码
-
         //校验验证码
         String cache_code = stringRedisTemplate.opsForValue().get(KEY_PREFIX + user.getPhone());
+        log.error("[从Redis中获取的验证码]:{}",cache_code);
         if(!StringUtils.equals(cache_code,code)){
+            log.error("[用户注册]注册失败，验证码1:{}，验证码2：{}",cache_code,code);
             throw new LyException(ExceptionEnum.INVALID_VERIFY_CODE);
         }
         //密码加密
@@ -90,15 +94,16 @@ public class UserService {
         user.setUsername(username);
         User record = userMapper.selectOne(user);
         // 校验用户名
-        if(user == null){
-            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+        if(record == null){
+//            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+            return null;
         }
-
         //校验密码-使用salt
         String salt = record.getSalt();
         String generate_password = CodeUtils.md5Hex(password,salt);
-        if(!StringUtils.equals(password,generate_password)){
-            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+        if(!StringUtils.equals(record.getPassword(),generate_password)){
+//            throw new LyException(ExceptionEnum.INVALID_USERNAME_OR_PASSWORD);
+            return null;
         }
 
         //用户名和密码校验正确

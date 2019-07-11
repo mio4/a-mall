@@ -39,7 +39,8 @@ zuul:
     auth-service:
       path: /auth/**
       serviceId: auth-service
-
+  add-host-header: true # 添加Cookie时发现Cookie不能跨域，添加host头信息
+  sensitive-headers:
 
 hystrix:
   command:
