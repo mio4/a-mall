@@ -1,4 +1,7 @@
+
+
 # 0x0 引言
+
 ## 1.学习目的
 1. 直接目的：搭建一个B2C购物网站
 2. 间接起因：复习JavaWeb开发Spring框架，了解学习前沿技术：SpringBoot、SpringCloud、消息队列等中间件
@@ -369,7 +372,9 @@ RSA算法（非对称加密算法——分为公钥和私钥，公钥加密的�
 
 ```
 
-![](assets/JWT.png)
+
+
+![token原理](assets/JWT.png)
 
 
 
