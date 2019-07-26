@@ -363,7 +363,13 @@ https://www.yunpian.com/console/#/admin
 
 ### 授权中心
 
+#### 1. JSON Web Token
+
+Header + Payload + Signature
+
 RSA非对称加密算法：私钥加密的内容可以用公钥解密
+
+#### 2. HTTP请求流程
 
 ![token原理](assets/JWT.png)
 
